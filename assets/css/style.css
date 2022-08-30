@@ -1,0 +1,215 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.container {
+display: flex column;
+}
+
+textarea {
+  background: transparent;
+  border: none;
+  border-radius: 1.5em;
+  resize: none;
+  color: whitesmoke;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+
+.jumbotron {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: #0563c1;
+  background-image: linear-gradient(
+    rgba(2, 51, 175, 0.914) 0%,
+    rgb(147, 154, 249) 100%);
+  color: whitesmoke;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+  margin-top: -25px;
+}
+
+img {
+  width: 800px;
+  height: 175px;
+  margin-top: -40px;
+  border-radius: 2em;
+  margin-bottom: 20px;
+}
+
+#clearFieldsBtn {
+margin-top: 25px;
+margin-bottom: -35px;
+border-radius: 0.5em;
+background-color: aqua;
+border: 1px solid #0563c1;
+width: 300px;
+}
+
+#clearFieldsBtn:hover {
+  background-color: whitesmoke;
+  color: #0563c1;
+  border: dashed 1.5px aqua;
+}
+
+#shadow {
+  border-radius: 1em;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.time-block {
+  text-align: left;
+  border-radius: 15px;
+}
+
+.row {
+  height: 80px;
+  border-top: 1px solid white;
+}
+
+.hour {
+  background-color: whitesmoke;
+  color: #46698b;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.past {
+  background-color: rgb(71, 53, 150);
+  background-image: linear-gradient(
+    rgba(199, 165, 243, 0.914) 0%,
+    rgb(82, 5, 249) 100%);
+  color: white;
+}
+
+.present {
+  color: white;
+  background-color: rgb(8, 159, 121);
+  background-image: linear-gradient(
+    rgba(178, 239, 226, 0.914) 0%,
+    rgb(6, 217, 171) 100%);
+}
+
+.future {
+  background-color: rgb(1, 173, 212);
+  background-image: linear-gradient(
+    rgba(76, 138, 176, 0.914) 0%,
+    rgb(3, 75, 157) 100%);
+  color: white;
+}
+
+.saveBtn {
+  background-color: #0563c1;
+  background-image: linear-gradient(
+    rgba(2, 51, 175, 0.914) 0%,
+    rgb(147, 154, 249) 100%);
+    border-radius: 1.5em;
+    border: solid 2px white;
+}
+
+.saveBtn:hover {
+  background-color: white;
+  border: dashed 2px white;
+}
+
+.saveBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  color: white;
+}
+
+.white-text {
+  color: white;
+}
+
+/************************* MOBILE DEVICE CONFIGURATIONS ************************/
+
+@media (max-width: 900px) {
+
+  .container {
+    flex-wrap: wrap;
+  }
+
+  img {
+    width: 400px;
+    height: 100px;
+  }
+
+  .row {
+   margin: 50px;
+ }
+
+  .saveBtn {
+   padding-left: 50px;
+   padding-right: 50px;
+   width: 50px;
+   height: 50px;
+ }
+
+ .past, .present, .future {
+   height: 100px;
+ }
+}
+
+@media (max-width: 760px) {
+   
+  .container {
+    flex-wrap: wrap;
+  }
+
+   img {
+     width: 400px;
+     height: 100px;
+   }
+
+   .row {
+    margin: 50px;
+  }
+
+   .saveBtn {
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .past, .present, .future {
+    height: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+   
+  .container {
+    flex-wrap: wrap;
+  }
+
+  img {
+    width: 400px;
+    height: 100px;
+  }
+
+  #clearFieldsBtn {
+   margin-bottom: 2.5px;
+  }
+
+  .row {
+   margin: 50px;
+ }
+
+  .saveBtn {
+   padding-left: 50px;
+   padding-right: 50px;
+   width: 50px;
+   height: 50px;
+ }
+
+ .past, .present, .future {
+   height: 100px;
+ }
+}
