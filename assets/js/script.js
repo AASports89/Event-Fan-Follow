@@ -5,6 +5,7 @@
 // var nameInputEl = document.querySelector('#');
 // var repoContainerEl = document.querySelector('#');
 // var repoSearchTerm = document.querySelector('#');
+var ticketCardHolderEl = $("#ticket-card-holder");
 
 // var formSubmitHandler = function (event) {
 //   event.preventDefault();
@@ -48,11 +49,12 @@ var getTicketMasterInfo = function (keyword) {
       console.log(data);
       var eventName = data._embedded.events[0].name;
       
-      // var cardBodyEl = $("<div>").addClass("card-body my-2");
+      var cardHolder = $("<div>").addClass("card");
 
-      // var cardName = $("<h5>").text(eventName).addClass("card-title");
+      var cardName = $("<h5>").text(eventName).addClass("card-title");
 
-      // document.append(cardName);
+      cardHolder.append(cardName);
+      ticketCardHolderEl.append(cardHolder);
 
     });
 
