@@ -33,28 +33,51 @@ var dueDateInputEl = $('#when');
 //   }
 // };
 
-// //Testing for Ticketmaster API//
-// var getUserRepos = function (user) {
-//   var apiUrl = 'https://api.github.com/users/' + user + '/repos';
 
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       if (response.ok) {
-//         console.log(response);
-//         response.json().then(function (data) {
-//           console.log(data);
-//           displayRepos(data, user);
-//         });
-//       } else {
-//         alert('Error: ' + response.statusText);
-//       }
-//     })
-//     .catch(function (error) {
-//       alert('Unable to connect to GitHub');
-//     });
-// };
+//Testing for Ticketmaster API//
+var getTicketMasterInfo = function (keyword) {
 
-// //Testing for Google Maps API//
+  var userCity = "los angeles";
+  var userClassificationName = "music";
+
+
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName;
+
+  fetch(apiUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function(data){
+      console.log(data);
+      var eventName = data._embedded.events[0].name;
+      
+      var cardBodyEl = $("<div>").addClass("card-body my-2");
+
+      var cardName = $("<h5>").text(eventName).addClass("card-title");
+
+      document.append(cardName);
+
+    });
+
+    // ? don't know what that is : 
+    //   if (response.ok) {
+    //     console.log(response);
+    //     response.json().then(function (data) {
+    //       console.log(data);
+    //       displayRepos(data, user);
+    //     });
+    //   } else {
+    //     alert('Error: ' + response.statusText);
+    //   }
+    // })
+    // .catch(function (error) {
+    //   alert('Unable to connect to GitHub');
+    // });
+};
+
+getTicketMasterInfo();
+
+//Testing for Google Maps API//
 // var getFeaturedRepos = function (language) {
 //   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
 
@@ -68,7 +91,6 @@ var dueDateInputEl = $('#when');
 //     }
 //   });
 // };
-
 
 dueDateInputEl.datepicker({ minDate: 1 });
 
