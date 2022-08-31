@@ -1,4 +1,7 @@
+var dueDateInputEl = $('#when');
+
 //********************** COPIED SOURCE CODE *********************//
+
 
 var userFormEl = document.querySelector("googleMap");
 var SeeEventsButtonsEl = document.querySelector('#');
@@ -10,48 +13,71 @@ var repoSearchTerm = document.querySelector('#');
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+//   var username = nameInputEl.value.trim();
 
-    repoContainerEl.textContent = '';
-    nameInputEl.value = '';
-  } else {
-    alert('INPUT ALERT MESSAGE');
-  }
-};
+//   if (username) {
+//     getUserRepos(username);
 
-var buttonClickHandler = function (event) {
-  var language = event.target.getAttribute('data-language');
+//     repoContainerEl.textContent = '';
+//     nameInputEl.value = '';
+//   } else {
+//     alert('INPUT ALERT MESSAGE');
+//   }
+// };
 
-  if (language) {
-    getFeaturedRepos(language);
+// var buttonClickHandler = function (event) {
+//   var language = event.target.getAttribute('data-language');
 
-    repoContainerEl.textContent = '';
-  }
-};
+//   if (language) {
+//     getFeaturedRepos(language);
+
+//     repoContainerEl.textContent = '';
+//   }
+// };
+
 
 //Testing for Ticketmaster API//
-var getUserRepos = function (user) {
-  var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+var getTicketMasterInfo = function (keyword) {
+
+  var userCity = "los angeles";
+  var userClassificationName = "music";
+
+
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName;
 
   fetch(apiUrl)
     .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayRepos(data, user);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
+      return response.json();
     })
-    .catch(function (error) {
-      alert('Unable to connect to GitHub');
+    .then(function(data){
+      console.log(data);
+      var eventName = data._embedded.events[0].name;
+      
+      var cardBodyEl = $("<div>").addClass("card-body my-2");
+
+      var cardName = $("<h5>").text(eventName).addClass("card-title");
+
+      document.append(cardName);
+
     });
+
+    // ? don't know what that is : 
+    //   if (response.ok) {
+    //     console.log(response);
+    //     response.json().then(function (data) {
+    //       console.log(data);
+    //       displayRepos(data, user);
+    //     });
+    //   } else {
+    //     alert('Error: ' + response.statusText);
+    //   }
+    // })
+    // .catch(function (error) {
+    //   alert('Unable to connect to GitHub');
+    // });
 };
+
 
 //********************** Testing for Google Maps API ************************//
 var getFeaturedRepos = function (mapProp) {
@@ -67,6 +93,13 @@ var getFeaturedRepos = function (mapProp) {
     }
   });
 };
+
+getTicketMasterInfo();
+
+
+
+dueDateInputEl.datepicker({ minDate: 1 });
+
 
 var getFeaturedRepos = function (geolocate) {
 var apiUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDUSfnQS1xGOOSal06rdyFTZrtwp70TO_Q&callback=geolocate";
