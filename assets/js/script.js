@@ -1,71 +1,76 @@
+var dueDateInputEl = $('#when');
+
 //********************** COPIED SOURCE CODE *********************//
 
-var userFormEl = document.querySelector('#');
-var SeeEventsButtonsEl = document.querySelector('#');
-var nameInputEl = document.querySelector('#');
-var repoContainerEl = document.querySelector('#');
-var repoSearchTerm = document.querySelector('#');
+// var userFormEl = document.querySelector('#');
+// var SeeEventsButtonsEl = document.querySelector('#');
+// var nameInputEl = document.querySelector('#');
+// var repoContainerEl = document.querySelector('#');
+// var repoSearchTerm = document.querySelector('#');
 
-var formSubmitHandler = function (event) {
-  event.preventDefault();
+// var formSubmitHandler = function (event) {
+//   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
+//   var username = nameInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+//   if (username) {
+//     getUserRepos(username);
 
-    repoContainerEl.textContent = '';
-    nameInputEl.value = '';
-  } else {
-    alert('INPUT ALERT MESSAGE');
-  }
-};
+//     repoContainerEl.textContent = '';
+//     nameInputEl.value = '';
+//   } else {
+//     alert('INPUT ALERT MESSAGE');
+//   }
+// };
 
-var buttonClickHandler = function (event) {
-  var language = event.target.getAttribute('data-language');
+// var buttonClickHandler = function (event) {
+//   var language = event.target.getAttribute('data-language');
 
-  if (language) {
-    getFeaturedRepos(language);
+//   if (language) {
+//     getFeaturedRepos(language);
 
-    repoContainerEl.textContent = '';
-  }
-};
+//     repoContainerEl.textContent = '';
+//   }
+// };
 
-//Testing for Ticketmaster API//
-var getUserRepos = function (user) {
-  var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+// //Testing for Ticketmaster API//
+// var getUserRepos = function (user) {
+//   var apiUrl = 'https://api.github.com/users/' + user + '/repos';
 
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayRepos(data, user);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect to GitHub');
-    });
-};
+//   fetch(apiUrl)
+//     .then(function (response) {
+//       if (response.ok) {
+//         console.log(response);
+//         response.json().then(function (data) {
+//           console.log(data);
+//           displayRepos(data, user);
+//         });
+//       } else {
+//         alert('Error: ' + response.statusText);
+//       }
+//     })
+//     .catch(function (error) {
+//       alert('Unable to connect to GitHub');
+//     });
+// };
 
-//Testing for Google Maps API//
-var getFeaturedRepos = function (language) {
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
+// //Testing for Google Maps API//
+// var getFeaturedRepos = function (language) {
+//   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
 
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayRepos(data.items, language);
-      });
-    } else {
-      alert('Error: ' + response.statusText);
-    }
-  });
-};
+//   fetch(apiUrl).then(function (response) {
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         displayRepos(data.items, language);
+//       });
+//     } else {
+//       alert('Error: ' + response.statusText);
+//     }
+//   });
+// };
+
+
+dueDateInputEl.datepicker({ minDate: 1 });
 
 //********************* COPIED SOURCE CODE *********************************//
 
