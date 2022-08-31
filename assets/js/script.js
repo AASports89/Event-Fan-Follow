@@ -1,3 +1,5 @@
+var dueDateInputEl = $('#when');
+
 //********************** COPIED SOURCE CODE *********************//
 
 // var userFormEl = document.querySelector('#');
@@ -30,6 +32,7 @@
 //     repoContainerEl.textContent = '';
 //   }
 // };
+
 
 //Testing for Ticketmaster API//
 var getTicketMasterInfo = function (keyword) {
@@ -88,6 +91,8 @@ getTicketMasterInfo();
 //     }
 //   });
 // };
+
+dueDateInputEl.datepicker({ minDate: 1 });
 
 //********************* COPIED SOURCE CODE *********************************//
 
