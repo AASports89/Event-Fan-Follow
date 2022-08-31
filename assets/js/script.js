@@ -1,4 +1,7 @@
+var dueDateInputEl = $('#when');
+
 //********************** COPIED SOURCE CODE *********************//
+
 
 // var userFormEl = document.querySelector('#');
 // var SeeEventsButtonsEl = document.querySelector('#');
@@ -7,8 +10,17 @@
 // var repoSearchTerm = document.querySelector('#');
 var ticketCardHolderEl = $("#ticket-card-holder");
 
-// var formSubmitHandler = function (event) {
-//   event.preventDefault();
+
+var userFormEl = document.querySelector("googleMap");
+// var SeeEventsButtonsEl = document.querySelector('#');
+// var nameInputEl = document.querySelector('#');
+// var repoContainerEl = document.querySelector('#');
+// var repoSearchTerm = document.querySelector('#');
+
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
 
 //   var username = nameInputEl.value.trim();
 
@@ -30,7 +42,8 @@ var ticketCardHolderEl = $("#ticket-card-holder");
 
 //     repoContainerEl.textContent = '';
 //   }
-// };
+};
+
 
 //Testing for Ticketmaster API//
 var getTicketMasterInfo = function (keyword) {
@@ -49,7 +62,7 @@ var getTicketMasterInfo = function (keyword) {
       console.log(data);
       var eventName = data._embedded.events[0].name;
       
-      var cardHolder = $("<div>").addClass("card");
+      var cardHolder = $("<div>").addClass("card col-4");
 
       var cardName = $("<h5>").text(eventName).addClass("card-title");
 
@@ -58,40 +71,156 @@ var getTicketMasterInfo = function (keyword) {
 
     });
 
-    // ? don't know what that is : 
-    //   if (response.ok) {
-    //     console.log(response);
-    //     response.json().then(function (data) {
-    //       console.log(data);
-    //       displayRepos(data, user);
-    //     });
-    //   } else {
-    //     alert('Error: ' + response.statusText);
-    //   }
-    // })
-    // .catch(function (error) {
-    //   alert('Unable to connect to GitHub');
-    // });
+};
+
+
+//********************** Testing for Google Maps API ************************//
+var getFeaturedRepos = function (mapProp) {
+  var apiUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDUSfnQS1xGOOSal06rdyFTZrtwp70TO_Q&callback=myMap";
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        displayRepos(data.items, mapProp);
+      });
+    } else {
+      alert('Error: ' + response.statusText);
+    }
+  });
 };
 
 getTicketMasterInfo();
 
-//Testing for Google Maps API//
-// var getFeaturedRepos = function (language) {
-//   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
 
-//   fetch(apiUrl).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         displayRepos(data.items, language);
-//       });
-//     } else {
-//       alert('Error: ' + response.statusText);
-//     }
-//   });
-// };
 
-//********************* COPIED SOURCE CODE *********************************//
+dueDateInputEl.datepicker({ minDate: 1 });
+
+
+var getFeaturedRepos = function (geolocate) {
+var apiUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDUSfnQS1xGOOSal06rdyFTZrtwp70TO_Q&callback=geolocate";
+
+fetch (apiUrl).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      displayRepos(data.items, geolocate);
+    });
+  } else {
+    alert('Error: ' + response.statusText);
+  }
+});
+};
+
+ //************************* GOOGLE MAPS VARIABLE(S) *************************//
+var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+function myMap(map) {
+  var map = {
+      center:new google.maps.LatLng(51.508742,-0.120850),
+      zoom:5,
+  };
+}
+
+var marker = new google.maps.Marker({position: myCenter});
+
+marker.setMap(map);
+
+var myTrip = [losangeles, california, unitedstates];
+var flightPath = new google.maps.Polyline({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2
+});
+
+var myTrip = [losangeles, california, unitedstates];
+var flightPath = new google.maps.Polygon({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2,
+  fillColor:"#0000FF",
+  fillOpacity:0.4
+});
+
+var myCity = new google.maps.Circle({
+  center:losangeles,
+  radius:20000,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2,
+  fillColor:"#0000FF",
+  fillOpacity:0.4
+});
+
+var infowindow = new google.maps.InfoWindow({
+  content:"Follow Event!"
+});
+
+var infowindow = new google.maps.InfoWindow({
+  content:"Follow Event!"
+});
+
+google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(map, event.latLng);
+});
+
+function placeMarker(map, location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() +
+    '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+}
+
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+
+infowindow.open(map,marker);
+
+var mapOptions = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:7,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+
+//ZOOM-TO-9 WHEN CLICKING ON MARKER//
+google.maps.event.addListener(marker,'click',function() {
+  map.setZoom(9);
+  map.setCenter(marker.getPosition());
+});
+
+google.maps.event.addListener(marker,'click',function() {
+  var pos = map.getZoom();
+  map.setZoom(9);
+  map.setCenter(marker.getPosition());
+  window.setTimeout(function() {map.setZoom(pos);},3000);
+});
+
+//***************************** GOOGLE MAP VARIABLE CONTROLS ******************************//
+// var mapOptions {disableDefaultUI: true}
+
+// var mapOptions {
+//   panControl: true,
+//   zoomControl: true,
+//   mapTypeControl: true,
+//   scaleControl: true,
+//   streetViewControl: true,
+//   overviewMapControl: true,
+//   rotateControl: true
+// }
+
+//************** CONTROL VARIABLES POSITION *************************************************//
+// mapTypeControl: true,
+// mapTypeControlOptions: {
+//   style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+//   position: google.maps.ControlPosition.TOP_CENTER
+// }
+//*************************** COPIED SOURCE CODE ****************************//
 
 // var displayRepos = function (repos, searchTerm) {
 //   if (repos.length === 0) {
@@ -129,5 +258,4 @@ getTicketMasterInfo();
 //   }
 // };
 
-// userFormEl.addEventListener('submit', formSubmitHandler);
-// languageButtonsEl.addEventListener('click', buttonClickHandler);
+// userFormEl.addEventListener('submit', formSubmitHandler)
