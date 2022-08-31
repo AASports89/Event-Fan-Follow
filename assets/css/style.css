@@ -1,9 +1,10 @@
-body {
- display: flex;
+form {
+  padding-left: 50px;
 }
 
-main{
-display: flex column;
+main {
+  background-image: url("..images/hollywood-bowl-fireworks copy.png");
+  /* display: flex column; */
 }
 
 /* Universal Selector */
