@@ -46,6 +46,13 @@ var getTicketMasterInfo = function (keyword) {
     })
     .then(function(data){
       console.log(data);
+      var eventName = data._embedded.events[0].name;
+      
+      var cardBodyEl = $("<div>").addClass("card-body my-2");
+
+      var cardName = $("<h5>").text(eventName).addClass("card-title");
+
+      document.append(cardName);
 
     });
 
