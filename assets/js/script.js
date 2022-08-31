@@ -48,11 +48,11 @@ var getTicketMasterInfo = function (keyword) {
       console.log(data);
       var eventName = data._embedded.events[0].name;
       
-      var cardBodyEl = $("<div>").addClass("card-body my-2");
+      // var cardBodyEl = $("<div>").addClass("card-body my-2");
 
-      var cardName = $("<h5>").text(eventName).addClass("card-title");
+      // var cardName = $("<h5>").text(eventName).addClass("card-title");
 
-      document.append(cardName);
+      // document.append(cardName);
 
     });
 
