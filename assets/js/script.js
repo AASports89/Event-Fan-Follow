@@ -3,11 +3,19 @@ var dueDateInputEl = $('#when');
 //********************** COPIED SOURCE CODE *********************//
 
 
+// var userFormEl = document.querySelector('#');
+// var SeeEventsButtonsEl = document.querySelector('#');
+// var nameInputEl = document.querySelector('#');
+// var repoContainerEl = document.querySelector('#');
+// var repoSearchTerm = document.querySelector('#');
+var ticketCardHolderEl = $("#ticket-card-holder");
+
+
 var userFormEl = document.querySelector("googleMap");
-var SeeEventsButtonsEl = document.querySelector('#');
-var nameInputEl = document.querySelector('#');
-var repoContainerEl = document.querySelector('#');
-var repoSearchTerm = document.querySelector('#');
+// var SeeEventsButtonsEl = document.querySelector('#');
+// var nameInputEl = document.querySelector('#');
+// var repoContainerEl = document.querySelector('#');
+// var repoSearchTerm = document.querySelector('#');
 
 
 var formSubmitHandler = function (event) {
@@ -34,7 +42,7 @@ var formSubmitHandler = function (event) {
 
 //     repoContainerEl.textContent = '';
 //   }
-// };
+};
 
 
 //Testing for Ticketmaster API//
@@ -54,28 +62,15 @@ var getTicketMasterInfo = function (keyword) {
       console.log(data);
       var eventName = data._embedded.events[0].name;
       
-      var cardBodyEl = $("<div>").addClass("card-body my-2");
+      var cardHolder = $("<div>").addClass("card col-4");
 
       var cardName = $("<h5>").text(eventName).addClass("card-title");
 
-      document.append(cardName);
+      cardHolder.append(cardName);
+      ticketCardHolderEl.append(cardHolder);
 
     });
 
-    // ? don't know what that is : 
-    //   if (response.ok) {
-    //     console.log(response);
-    //     response.json().then(function (data) {
-    //       console.log(data);
-    //       displayRepos(data, user);
-    //     });
-    //   } else {
-    //     alert('Error: ' + response.statusText);
-    //   }
-    // })
-    // .catch(function (error) {
-    //   alert('Unable to connect to GitHub');
-    // });
 };
 
 
@@ -116,7 +111,7 @@ fetch (apiUrl).then(function (response) {
 };
 
  //************************* GOOGLE MAPS VARIABLE(S) *************************//
- var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
 
 function myMap(map) {
   var map = {
@@ -263,5 +258,4 @@ google.maps.event.addListener(marker,'click',function() {
 //   }
 // };
 
-// userFormEl.addEventListener('submit', formSubmitHandler);
-// languageButtonsEl.addEventListener('click', buttonClickHandler);
+// userFormEl.addEventListener('submit', formSubmitHandler)
