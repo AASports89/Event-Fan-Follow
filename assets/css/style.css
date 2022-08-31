@@ -6,6 +6,44 @@ main{
 display: flex column;
 }
 
+/* Universal Selector */
+* {
+  margin:0;
+  padding:0;  
+}
+
+/* Element Selectors */
+body {
+  position: relative;
+  font-family: "Goudy Bookletter 1911", sans-serif;
+  font-size: 20px;
+  background-color: #FDF8F5;
+  color: #4F4846;
+}
+
+
+li {
+  display: inline;
+  padding: 0px 20px;
+  text-decoration: none;
+}
+
+header,
+footer {
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+  background-color: #0a0260; 
+}
+
+/* Class Selectors */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
 /************************* MOBILE DEVICE CONFIGURATIONS ************************/
 
 /* @media (max-width: 900px) {
