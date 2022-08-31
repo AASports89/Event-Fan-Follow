@@ -1,71 +1,86 @@
 //********************** COPIED SOURCE CODE *********************//
 
-var userFormEl = document.querySelector('#');
-var SeeEventsButtonsEl = document.querySelector('#');
-var nameInputEl = document.querySelector('#');
-var repoContainerEl = document.querySelector('#');
-var repoSearchTerm = document.querySelector('#');
+// var userFormEl = document.querySelector('#');
+// var SeeEventsButtonsEl = document.querySelector('#');
+// var nameInputEl = document.querySelector('#');
+// var repoContainerEl = document.querySelector('#');
+// var repoSearchTerm = document.querySelector('#');
 
-var formSubmitHandler = function (event) {
-  event.preventDefault();
+// var formSubmitHandler = function (event) {
+//   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
+//   var username = nameInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+//   if (username) {
+//     getUserRepos(username);
 
-    repoContainerEl.textContent = '';
-    nameInputEl.value = '';
-  } else {
-    alert('INPUT ALERT MESSAGE');
-  }
-};
+//     repoContainerEl.textContent = '';
+//     nameInputEl.value = '';
+//   } else {
+//     alert('INPUT ALERT MESSAGE');
+//   }
+// };
 
-var buttonClickHandler = function (event) {
-  var language = event.target.getAttribute('data-language');
+// var buttonClickHandler = function (event) {
+//   var language = event.target.getAttribute('data-language');
 
-  if (language) {
-    getFeaturedRepos(language);
+//   if (language) {
+//     getFeaturedRepos(language);
 
-    repoContainerEl.textContent = '';
-  }
-};
+//     repoContainerEl.textContent = '';
+//   }
+// };
 
 //Testing for Ticketmaster API//
-var getUserRepos = function (user) {
-  var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+var getTicketMasterInfo = function (keyword) {
+
+  var userCity = "los angeles";
+  var userClassificationName = "music";
+
+
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName;
 
   fetch(apiUrl)
     .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayRepos(data, user);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
+      return response.json();
     })
-    .catch(function (error) {
-      alert('Unable to connect to GitHub');
+    .then(function(data){
+      console.log(data);
+
     });
+
+    // ? don't know what that is : 
+    //   if (response.ok) {
+    //     console.log(response);
+    //     response.json().then(function (data) {
+    //       console.log(data);
+    //       displayRepos(data, user);
+    //     });
+    //   } else {
+    //     alert('Error: ' + response.statusText);
+    //   }
+    // })
+    // .catch(function (error) {
+    //   alert('Unable to connect to GitHub');
+    // });
 };
+
+getTicketMasterInfo();
 
 //Testing for Google Maps API//
-var getFeaturedRepos = function (language) {
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
+// var getFeaturedRepos = function (language) {
+//   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
 
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayRepos(data.items, language);
-      });
-    } else {
-      alert('Error: ' + response.statusText);
-    }
-  });
-};
+//   fetch(apiUrl).then(function (response) {
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         displayRepos(data.items, language);
+//       });
+//     } else {
+//       alert('Error: ' + response.statusText);
+//     }
+//   });
+// };
 
 //********************* COPIED SOURCE CODE *********************************//
 
