@@ -1,10 +1,11 @@
 //********************** COPIED SOURCE CODE *********************//
 
-var userFormEl = document.querySelector('#');
+var userFormEl = document.querySelector("googleMap");
 var SeeEventsButtonsEl = document.querySelector('#');
 var nameInputEl = document.querySelector('#');
 var repoContainerEl = document.querySelector('#');
 var repoSearchTerm = document.querySelector('#');
+
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -52,14 +53,14 @@ var getUserRepos = function (user) {
     });
 };
 
-//Testing for Google Maps API//
-var getFeaturedRepos = function (language) {
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
+//********************** Testing for Google Maps API ************************//
+var getFeaturedRepos = function (mapProp) {
+  var apiUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDUSfnQS1xGOOSal06rdyFTZrtwp70TO_Q&callback=myMap";
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        displayRepos(data.items, language);
+        displayRepos(data.items, mapProp);
       });
     } else {
       alert('Error: ' + response.statusText);
@@ -67,7 +68,131 @@ var getFeaturedRepos = function (language) {
   });
 };
 
-//********************* COPIED SOURCE CODE *********************************//
+var getFeaturedRepos = function (geolocate) {
+var apiUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDUSfnQS1xGOOSal06rdyFTZrtwp70TO_Q&callback=geolocate";
+
+fetch (apiUrl).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      displayRepos(data.items, geolocate);
+    });
+  } else {
+    alert('Error: ' + response.statusText);
+  }
+});
+};
+
+ //************************* GOOGLE MAPS VARIABLE(S) *************************//
+ var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+function myMap(map) {
+  var map = {
+      center:new google.maps.LatLng(51.508742,-0.120850),
+      zoom:5,
+  };
+}
+
+var marker = new google.maps.Marker({position: myCenter});
+
+marker.setMap(map);
+
+var myTrip = [losangeles, california, unitedstates];
+var flightPath = new google.maps.Polyline({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2
+});
+
+var myTrip = [losangeles, california, unitedstates];
+var flightPath = new google.maps.Polygon({
+  path:myTrip,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2,
+  fillColor:"#0000FF",
+  fillOpacity:0.4
+});
+
+var myCity = new google.maps.Circle({
+  center:losangeles,
+  radius:20000,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.8,
+  strokeWeight:2,
+  fillColor:"#0000FF",
+  fillOpacity:0.4
+});
+
+var infowindow = new google.maps.InfoWindow({
+  content:"Follow Event!"
+});
+
+var infowindow = new google.maps.InfoWindow({
+  content:"Follow Event!"
+});
+
+google.maps.event.addListener(map, 'click', function(event) {
+  placeMarker(map, event.latLng);
+});
+
+function placeMarker(map, location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  var infowindow = new google.maps.InfoWindow({
+    content: 'Latitude: ' + location.lat() +
+    '<br>Longitude: ' + location.lng()
+  });
+  infowindow.open(map,marker);
+}
+
+google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+
+infowindow.open(map,marker);
+
+var mapOptions = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:7,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+
+//ZOOM-TO-9 WHEN CLICKING ON MARKER//
+google.maps.event.addListener(marker,'click',function() {
+  map.setZoom(9);
+  map.setCenter(marker.getPosition());
+});
+
+google.maps.event.addListener(marker,'click',function() {
+  var pos = map.getZoom();
+  map.setZoom(9);
+  map.setCenter(marker.getPosition());
+  window.setTimeout(function() {map.setZoom(pos);},3000);
+});
+
+//***************************** GOOGLE MAP VARIABLE CONTROLS ******************************//
+// var mapOptions {disableDefaultUI: true}
+
+// var mapOptions {
+//   panControl: true,
+//   zoomControl: true,
+//   mapTypeControl: true,
+//   scaleControl: true,
+//   streetViewControl: true,
+//   overviewMapControl: true,
+//   rotateControl: true
+// }
+
+//************** CONTROL VARIABLES POSITION *************************************************//
+// mapTypeControl: true,
+// mapTypeControlOptions: {
+//   style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+//   position: google.maps.ControlPosition.TOP_CENTER
+// }
+//*************************** COPIED SOURCE CODE ****************************//
 
 // var displayRepos = function (repos, searchTerm) {
 //   if (repos.length === 0) {
