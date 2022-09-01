@@ -61,6 +61,11 @@ var getTicketMasterInfo = function (keyword) {
     .then(function(data){
       console.log(data);
       var eventName = data._embedded.events[0].name;
+      var eventImageURL = data._embedded.events[0].images[1].url;
+      var eventPrice = data._embedded.events[0].priceRanges[0].min + "-" + data._embedded.events[0].priceRanges[0].max;
+      var eventVenue = data._embedded.events[0]._embedded.venues[0].name;
+      var lat = data._embedded.events[0]._embedded.venues[0].location.latitude;
+      var lon = data._embedded.events[0]._embedded.venues[0].location.longitude;
       
       var cardHolder = $("<div>").addClass("card col-4");
 
