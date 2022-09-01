@@ -10,16 +10,13 @@ body {
   font-family: "Goudy Bookletter 1911", sans-serif;
   font-size: 20px;
   color: #4F4846;
-}
-
-/* MS note - got background image to render. Still working on sizing issues */
-body {
-  background-color: #000000;
-  background-image: url("/assets/images/HB.jpg");
+  background-image: url("../images/HB.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
 
 /* MS note - added padding to push our logo out a bit */
 h1 {
@@ -39,14 +36,39 @@ li {
   text-decoration: none;
 }
 
-header,
-footer {
+header {
   height: 60px;
   width: 100%;
   line-height: 60px;
 }
 
+nav {
+  background-image: linear-gradient(
+  rgb(4, 38, 205) 0%,
+  rgb(129, 143, 247) 100%);
+}
+
+footer {
+  height: 60px;
+  width: 100%;
+  line-height: 60px;
+  background-image: linear-gradient(
+  rgb(4, 38, 205) 0%,
+  rgb(129, 143, 247) 100%);
+}
+
 /* Class Selectors */
+
+.btn {
+  background-image: linear-gradient(
+  rgb(4, 38, 205) 0%,
+  rgb(129, 143, 247) 100%);
+}
+
+.container {
+  padding-top: 50px;
+}
+
 .text-center {
   text-align: center;
 }
