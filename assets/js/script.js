@@ -101,7 +101,9 @@ function testFunction(event) {
   var lat = event.currentTarget.dataset.lat;
   var lon = event.currentTarget.dataset.lon;
 
-  // console.log(lon);
+  console.log(lat);
+  console.log(lon);
+
 }
 
 
