@@ -13,7 +13,7 @@ body {
 }
 
 /* MS note - got background image to render. Still working on sizing issues */
-main {
+body {
   background-color: #000000;
   background-image: url("/assets/images/HB.png");
   background-position: center;
