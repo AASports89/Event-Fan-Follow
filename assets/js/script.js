@@ -60,19 +60,29 @@ var getTicketMasterInfo = function (keyword) {
     })
     .then(function(data){
       console.log(data);
-      var eventName = data._embedded.events[0].name;
-      var eventImageURL = data._embedded.events[0].images[1].url;
-      var eventPrice = data._embedded.events[0].priceRanges[0].min + "-" + data._embedded.events[0].priceRanges[0].max;
-      var eventVenue = data._embedded.events[0]._embedded.venues[0].name;
-      var lat = data._embedded.events[0]._embedded.venues[0].location.latitude;
-      var lon = data._embedded.events[0]._embedded.venues[0].location.longitude;
+
+      var indexNumbers = ["0", "1", "2", "3", "4", "5"]; 
+      indexNumbers.forEach(function(indexNumber){
+
+        var eventName = data._embedded.events[indexNumber].name;
+        var eventImageURL = data._embedded.events[indexNumber].images[1].url;
+        var eventPrice = "$" + data._embedded.events[indexNumber].priceRanges[0].min + "0 - $" + data._embedded.events[indexNumber].priceRanges[0].max + "0";
+        var eventVenue = data._embedded.events[indexNumber]._embedded.venues[0].name;
+        var lat = data._embedded.events[indexNumber]._embedded.venues[0].location.latitude;
+        var lon = data._embedded.events[indexNumber]._embedded.venues[0].location.longitude;
       
-      var cardHolder = $("<div>").addClass("card col-4");
+        var cardHolder = $("<div>").addClass("card d-flex");
+        var cardImg = $("<img>").attr("src", eventImageURL).addClass("card-img-top");
+        var cardBody = $("<div>").addClass("card-body");
+        var cardName = $("<h5>").text(eventName).addClass("card-title");
+        var cardVenue = $("<p>").text(eventVenue).addClass("card-text");
+        var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
 
-      var cardName = $("<h5>").text(eventName).addClass("card-title");
+        cardBody.append(cardName, cardVenue, cardPrice);
+        cardHolder.append(cardImg , cardBody);
+        ticketCardHolderEl.append(cardHolder);
 
-      cardHolder.append(cardName);
-      ticketCardHolderEl.append(cardHolder);
+      })
 
     });
 
