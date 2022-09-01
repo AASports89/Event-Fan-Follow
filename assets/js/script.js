@@ -64,6 +64,8 @@ var getTicketMasterInfo = function (event) {
     .then(function(data){
       console.log(data);
 
+      ticketCardHolderEl.empty();
+
       var indexNumbers = ["0", "1", "2", "3", "4", "5"]; 
       indexNumbers.forEach(function(indexNumber){
 
@@ -74,7 +76,8 @@ var getTicketMasterInfo = function (event) {
         var lat = data._embedded.events[indexNumber]._embedded.venues[0].location.latitude;
         var lon = data._embedded.events[indexNumber]._embedded.venues[0].location.longitude;
       
-        var cardHolder = $("<div>").addClass("card d-flex");
+        var cardCol = $("<div>").addClass("col-sm-12 col-md-6 col-lg-3 col-xl-2 mb-4");
+        var cardHolder = $("<div>").addClass("card border border-light mt-4 h-100");
         var cardImg = $("<img>").attr("src", eventImageURL).addClass("card-img-top");
         var cardBody = $("<div>").addClass("card-body");
         var cardName = $("<h5>").text(eventName).addClass("card-title");
@@ -84,10 +87,8 @@ var getTicketMasterInfo = function (event) {
         
         cardBody.append(cardName, cardVenue, cardPrice, cardButton);
         cardHolder.append(cardImg , cardBody);
-        ticketCardHolderEl.append(cardHolder);
-
-        // pass lat, lon in argument () -> to google api 
-
+        cardCol.append(cardHolder);
+        ticketCardHolderEl.append(cardCol);
       })
 
     });
