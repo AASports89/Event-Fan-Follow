@@ -80,14 +80,13 @@ var getTicketMasterInfo = function (event) {
         var cardName = $("<h5>").text(eventName).addClass("card-title");
         var cardVenue = $("<p>").text(eventVenue).addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
-        var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white");
-
+        var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white").attr("data-lat", lat).attr("data-lon", lon);
+        
         cardBody.append(cardName, cardVenue, cardPrice, cardButton);
         cardHolder.append(cardImg , cardBody);
         ticketCardHolderEl.append(cardHolder);
 
         // pass lat, lon in argument () -> to google api 
-        $(cardButton).on("click", testFunction(lat, lon));
 
       })
 
@@ -95,9 +94,17 @@ var getTicketMasterInfo = function (event) {
 
 };
 
-function testFunction(lat, lon) {
+$(ticketCardHolderEl).on("click", ".btn", testFunction);
+
+
+function testFunction(event) {
+  var lat = event.currentTarget.dataset.lat;
+  var lon = event.currentTarget.dataset.lon;
+
   console.log(lat);
   console.log(lon);
+  console.log("what")
+
 }
 
 
