@@ -1,5 +1,6 @@
 var dueDateInputEl = $('#when');
 var searchCityIDEl = $('#searchCityID');
+var eventTypeEl = $('#event-type');
 
 //********************** COPIED SOURCE CODE *********************//
 
@@ -50,14 +51,10 @@ var formSubmitHandler = function (event) {
 var getTicketMasterInfo = function (event) {
 
   console.log(event);
-  // todo add user date picked
-  // todo add user classification name (find what classifications they can use) 
     // ? music, sports, theatre, art, exhibit
   var userCity = event.currentTarget.parentElement.parentElement.firstElementChild.firstElementChild.nextElementSibling.value;
   var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
-  
-  var userClassificationName = "music";
-
+  var userClassificationName = eventTypeEl[0].value;
 
   var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
 
