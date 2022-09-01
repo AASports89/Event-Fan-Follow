@@ -1,4 +1,5 @@
 var dueDateInputEl = $('#when');
+var searchCityIDEl = $('#searchCityID');
 
 //********************** COPIED SOURCE CODE *********************//
 
@@ -46,9 +47,11 @@ var formSubmitHandler = function (event) {
 
 
 //Testing for Ticketmaster API//
-var getTicketMasterInfo = function (keyword) {
+var getTicketMasterInfo = function (event) {
 
-  var userCity = "los angeles";
+  console.log(event);
+  var userCity = event.currentTarget.parentElement.parentElement.firstElementChild.firstElementChild.nextElementSibling.value;
+
   var userClassificationName = "music";
 
 
@@ -77,16 +80,25 @@ var getTicketMasterInfo = function (keyword) {
         var cardName = $("<h5>").text(eventName).addClass("card-title");
         var cardVenue = $("<p>").text(eventVenue).addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
+        var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white");
 
-        cardBody.append(cardName, cardVenue, cardPrice);
+        cardBody.append(cardName, cardVenue, cardPrice, cardButton);
         cardHolder.append(cardImg , cardBody);
         ticketCardHolderEl.append(cardHolder);
+
+        // pass lat, lon in argument () -> to google api 
+        $(cardButton).on("click", testFunction(lat, lon));
 
       })
 
     });
 
 };
+
+function testFunction(lat, lon) {
+  console.log(lat);
+  console.log(lon);
+}
 
 
 //********************** Testing for Google Maps API ************************//
@@ -104,9 +116,8 @@ var getFeaturedRepos = function (mapProp) {
   });
 };
 
-getTicketMasterInfo();
-
-
+// *************************** Calling Functions ********************************//
+searchCityIDEl.on("click", getTicketMasterInfo)
 
 dueDateInputEl.datepicker({ minDate: 1 });
 
