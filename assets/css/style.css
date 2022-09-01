@@ -13,9 +13,9 @@ body {
 }
 
 /* MS note - got background image to render. Still working on sizing issues */
-main {
+body {
   background-color: #000000;
-  background-image: url("/assets/images/HB.png");
+  background-image: url("/assets/images/HB.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
