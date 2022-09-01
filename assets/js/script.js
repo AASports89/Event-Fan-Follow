@@ -103,6 +103,7 @@ function testFunction(event) {
 
   console.log(lat);
   console.log(lon);
+  console.log("what")
 
 }
 
