@@ -16,7 +16,13 @@ body {
   background-size: cover;
 }
 
-
+#map {
+  height: 200px;
+  margin-top: 70%;
+float: right;
+  width: 20%;
+  display: none;
+}
 
 /* MS note - added padding to push our logo out a bit */
 h1 {
