@@ -102,7 +102,7 @@ searchCityIDEl.on('click', getTicketMasterInfo);
 dueDateInputEl.datepicker({ minDate: 1 });
 
 function getFeaturedRepos(mapProp) {
-  var apiUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=myMap";
+  var apiUrl = "httpsgit checki://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=myMap";
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
@@ -113,9 +113,8 @@ function getFeaturedRepos(mapProp) {
       alert('Error: ' + response.statusText);
     }
   });
-}
 
-//********************************** SHOW MAP DIV **********************//
+  //********************************** SHOW MAP DIV **********************//
 
 const targetDiv = document.getElementById('map');
 const btn = document.getElementById(".btn");
