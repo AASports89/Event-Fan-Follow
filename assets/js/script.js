@@ -58,7 +58,10 @@ var getTicketMasterInfo = function (event) {
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort; 
   console.log(eventSortEl[0].selectedOptions[0].dataset.sort);
 
-  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate + "&sort=" + userSort;
+  setLocalStorage(userCity)
+
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
+
 
   fetch(apiUrl)
     .then(function (response) {
@@ -100,7 +103,16 @@ var getTicketMasterInfo = function (event) {
 
 };
 
-// $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
+
+function setLocalStorage(city) {
+  console.log(city) 
+  localStorage.setItem("city", city);
+}
+
+$(ticketCardHolderEl).on("click", ".btn", testFunction);
+
+$(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
+
 
 
 // // function testFunction(event) {
