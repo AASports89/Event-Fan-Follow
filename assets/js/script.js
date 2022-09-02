@@ -55,6 +55,8 @@ var getTicketMasterInfo = function (event) {
   var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
   var userClassificationName = eventTypeEl[0].value;
 
+  setLocalStorage(userCity)
+
   var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
 
   fetch(apiUrl)
@@ -96,6 +98,11 @@ var getTicketMasterInfo = function (event) {
     });
 
 };
+
+function setLocalStorage(city) {
+  console.log(city) 
+  localStorage.setItem("city", city);
+}
 
 $(ticketCardHolderEl).on("click", ".btn", testFunction);
 
