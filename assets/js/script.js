@@ -109,8 +109,6 @@ function setLocalStorage(city) {
   localStorage.setItem("city", city);
 }
 
-$(ticketCardHolderEl).on("click", ".btn", testFunction);
-
 $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
 
 
