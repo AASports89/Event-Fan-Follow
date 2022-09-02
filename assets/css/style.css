@@ -11,20 +11,17 @@ body {
   font-size: 20px;
   color: #4F4846;
   background-image: url("../images/HB.jpg");
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 
-
-/* MS note - added padding to push our logo out a bit */
 h1 {
   padding-left: 20px;
   padding-top: 5px;
 }
 
-/* MS note - added padding to center the nav links */
 ul {
   padding-top: 17px;
 }
@@ -58,7 +55,6 @@ footer {
 }
 
 /* Class Selectors */
-
 .btn {
   background-image: linear-gradient(
   rgb(4, 38, 205) 0%,
