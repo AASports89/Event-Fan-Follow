@@ -1,6 +1,7 @@
 var dueDateInputEl = $('#when');
 var searchCityIDEl = $('#searchCityID');
 var eventTypeEl = $('#event-type');
+var eventSortEl = $('#how-sort');
 
 //********************** COPIED SOURCE CODE *********************//
 
@@ -54,8 +55,10 @@ var getTicketMasterInfo = function (event) {
   var userCity = event.currentTarget.parentElement.parentElement.firstElementChild.firstElementChild.nextElementSibling.value;
   var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
   var userClassificationName = eventTypeEl[0].value;
+  var userSort = eventSortEl[0].selectedOptions[0].dataset.sort; 
+  console.log(eventSortEl[0].selectedOptions[0].dataset.sort);
 
-  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate + "&sort=" + userSort;
 
   fetch(apiUrl)
     .then(function (response) {
