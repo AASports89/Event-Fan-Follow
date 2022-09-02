@@ -44,7 +44,7 @@ var getTicketMasterInfo = function (event) {
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort; 
   console.log(eventSortEl[0].selectedOptions[0].dataset.sort);
  
-  getLocalStorage(userCity);
+  setLocalStorage(userCity);
 
   var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate + "&sort=" + userSort;
 
