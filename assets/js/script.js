@@ -37,12 +37,10 @@ var formSubmitHandler = function (event) {
 //Testing for Ticketmaster API//
 var getTicketMasterInfo = function (event) {
 
-  console.log(event);
   var userCity = event.currentTarget.parentElement.parentElement.firstElementChild.firstElementChild.nextElementSibling.value;
   var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
   var userClassificationName = eventTypeEl[0].value;
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort; 
-  console.log(eventSortEl[0].selectedOptions[0].dataset.sort);
  
   setLocalStorage(userCity);
 
@@ -53,7 +51,6 @@ var getTicketMasterInfo = function (event) {
       return response.json();
     })
     .then(function(data){
-      console.log(data);
       ticketCardHolderEl.empty();
 
       var indexNumbers = ["0", "1", "2", "3", "4", "5"]; 
@@ -76,7 +73,7 @@ var getTicketMasterInfo = function (event) {
         var cardVenue = $("<p>").text(eventVenue).addClass("card-text");
         var cardDateTime = $("<p>").text(eventDate + " - " + eventTime).addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
-        var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white").attr("data-lat", lat).attr("data-lon", lon);
+        var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white").attr("data-lat", lat).attr("data-lon", lon).attr("type", "button");
         
         cardBody.append(cardName, cardVenue, cardDateTime, cardPrice, cardButton); 
         cardHolder.append(cardImg , cardBody);
@@ -113,7 +110,7 @@ function getFeaturedRepos(mapProp) {
       alert('Error: ' + response.statusText);
     }
   });
-
+}
   //********************************** SHOW MAP DIV **********************//
 
 const targetDiv = document.getElementById('map');
