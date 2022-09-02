@@ -3,22 +3,9 @@ var searchCityIDEl = $('#searchCityID');
 var eventTypeEl = $('#event-type');
 var eventSortEl = $('#how-sort');
 
-//********************** COPIED SOURCE CODE *********************//
-
-
-// var userFormEl = document.querySelector('#');
-// var SeeEventsButtonsEl = document.querySelector('#');
-// var nameInputEl = document.querySelector('#');
-// var repoContainerEl = document.querySelector('#');
-// var repoSearchTerm = document.querySelector('#');
 var ticketCardHolderEl = $("#ticket-card-holder");
-
-
 var userFormEl = document.querySelector("googleMap");
-// var SeeEventsButtonsEl = document.querySelector('#');
-// var nameInputEl = document.querySelector('#');
-// var repoContainerEl = document.querySelector('#');
-// var repoSearchTerm = document.querySelector('#');
+
 
 
 var formSubmitHandler = function (event) {
@@ -56,11 +43,10 @@ var getTicketMasterInfo = function (event) {
   var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
   var userClassificationName = eventTypeEl[0].value;
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort; 
-  console.log(eventSortEl[0].selectedOptions[0].dataset.sort);
 
   setLocalStorage(userCity)
 
-  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate + "&sort" + userSort;
 
 
   fetch(apiUrl)
