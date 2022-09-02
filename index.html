@@ -41,7 +41,7 @@
         <div class="events form">
           <div class="mb-3">
             <label for="formGroup" class="form-label text-white">Where are you traveling to?</label>
-            <input type="text" class="form-control" id="where" placeholder="City or Zip Code">
+            <input type="text" class="form-control" id="where" placeholder="City, State">
           </div>
 
         <div class="mb-3">
@@ -62,11 +62,15 @@
        
         <div class="mb-3">
           <label for="formGroup" class="form-label text-white">Sort by:</label>
-          <select class="form-control" id="how-many">
-            <option>Relevence, desc.</option>
-            <option>Date, desc. </option>
-            <option>Name, Date, desc.</option>
-            <option>Random</option>
+          <select class="form-control" id="how-sort">
+            <option data-sort="relevance,desc">Relevence, desc.</option>
+            <option data-sort="date,desc">Date, desc. </option>
+            <option data-sort="date,asc">Date, accend. </option>
+            <option data-sort="name,date,desc">Name, Date, desc.</option>
+            <option data-sort="name,date,asc">Name, Date, accend.</option>
+            <option data-sort="venueName,asc">Venue Name, accend.</option>
+            <option data-sort="venueName,desc">Venue Name, desc.</option>
+            <option data-sort="random">Random</option>
           </select>
         </div>
        

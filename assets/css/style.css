@@ -17,6 +17,8 @@ body {
 }
 
 
+
+
 #map {
   height: 200px;
   margin-top: 70%;
@@ -25,7 +27,9 @@ float: right;
   display: none;
 }
 
+
 /* MS note - added padding to push our logo out a bit */
+
 
 
 h1 {
