@@ -16,7 +16,7 @@ body {
   background-size: cover;
 }
 
-<<<<<<< HEAD
+
 #map {
   height: 200px;
   margin-top: 70%;
@@ -26,9 +26,8 @@ float: right;
 }
 
 /* MS note - added padding to push our logo out a bit */
-=======
 
->>>>>>> 32b6d92cc15e65353fc979ec8cde73d1ac28e01a
+
 h1 {
   padding-left: 20px;
   padding-top: 5px;

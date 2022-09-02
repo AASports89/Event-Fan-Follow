@@ -111,7 +111,7 @@ var getTicketMasterInfo = function (event) {
 
 //********************** Testing for Google Maps API ************************//
 function getFeaturedRepos(mapProp) {
-  var apiUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=myMap";
+  var apiUrl = "httpsgit checki://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=myMap";
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
