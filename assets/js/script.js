@@ -69,7 +69,7 @@ var getTicketMasterInfo = function (event) {
       indexNumbers.forEach(function(indexNumber){
 
         var eventName = data._embedded.events[indexNumber].name;
-        var eventImageURL = data._embedded.events[indexNumber].images[].url;
+        var eventImageURL = data._embedded.events[indexNumber].images[1].url;
         var eventPrice = "$" + data._embedded.events[indexNumber].priceRanges[0].min + "0 - $" + data._embedded.events[indexNumber].priceRanges[0].max + "0";
         var eventVenue = data._embedded.events[indexNumber]._embedded.venues[0].name;
         var eventDate = moment(data._embedded.events[indexNumber].dates.start.localDate, "YYYY-MM-DD").format("MM/DD/YYYY");
