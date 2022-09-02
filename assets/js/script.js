@@ -1,5 +1,6 @@
 var dueDateInputEl = $('#when');
 var searchCityIDEl = $('#searchCityID');
+var eventTypeEl = $('#event-type');
 
 //********************** COPIED SOURCE CODE *********************//
 
@@ -51,11 +52,10 @@ var getTicketMasterInfo = function (event) {
 
   console.log(event);
   var userCity = event.currentTarget.parentElement.parentElement.firstElementChild.firstElementChild.nextElementSibling.value;
+  var userDate = moment(dueDateInputEl[0].value, "MM/DD/YYYY").format("YYYY-MM-DD"+"T"+"HH:mm:ss") + "Z";
+  var userClassificationName = eventTypeEl[0].value;
 
-  var userClassificationName = "music";
-
-
-  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName;
+  var apiUrl = 'https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=' + userCity + "&classificationName=" + userClassificationName + "&startDateTime=" + userDate;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -63,6 +63,7 @@ var getTicketMasterInfo = function (event) {
     })
     .then(function(data){
       console.log(data);
+      ticketCardHolderEl.empty();
 
       var indexNumbers = ["0", "1", "2", "3", "4", "5"]; 
       indexNumbers.forEach(function(indexNumber){
@@ -71,23 +72,25 @@ var getTicketMasterInfo = function (event) {
         var eventImageURL = data._embedded.events[indexNumber].images[1].url;
         var eventPrice = "$" + data._embedded.events[indexNumber].priceRanges[0].min + "0 - $" + data._embedded.events[indexNumber].priceRanges[0].max + "0";
         var eventVenue = data._embedded.events[indexNumber]._embedded.venues[0].name;
+        var eventDate = moment(data._embedded.events[indexNumber].dates.start.localDate, "YYYY-MM-DD").format("MM/DD/YYYY");
+        var eventTime = moment(data._embedded.events[indexNumber].dates.start.localTime, "HH-mm-ss").format("h:mmA");
         var lat = data._embedded.events[indexNumber]._embedded.venues[0].location.latitude;
         var lon = data._embedded.events[indexNumber]._embedded.venues[0].location.longitude;
       
-        var cardHolder = $("<div>").addClass("card d-flex");
+        var cardCol = $("<div>").addClass("col-sm-12 col-md-6 col-lg-3 col-xl-2 mb-4");
+        var cardHolder = $("<div>").addClass("card border border-light mt-4 h-100");
         var cardImg = $("<img>").attr("src", eventImageURL).addClass("card-img-top");
-        var cardBody = $("<div>").addClass("card-body");
+        var cardBody = $("<div>").addClass("card-body text-center");
         var cardName = $("<h5>").text(eventName).addClass("card-title");
         var cardVenue = $("<p>").text(eventVenue).addClass("card-text");
+        var cardDateTime = $("<p>").text(eventDate + " - " + eventTime).addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
         var cardButton = $("<a>").text("Directions").addClass("btn btn-primary text-white").attr("data-lat", lat).attr("data-lon", lon);
         
-        cardBody.append(cardName, cardVenue, cardPrice, cardButton);
+        cardBody.append(cardName, cardVenue, cardDateTime, cardPrice, cardButton); 
         cardHolder.append(cardImg , cardBody);
-        ticketCardHolderEl.append(cardHolder);
-
-        // pass lat, lon in argument () -> to google api 
-
+        cardCol.append(cardHolder);
+        ticketCardHolderEl.append(cardCol);
       })
 
     });

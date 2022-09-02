@@ -52,12 +52,22 @@
        
         <div class="mb-3">
           <label for="formGroup" class="form-label text-white">Event type</label>
-          <input type="text" class="form-control" id="what" placeholder="artist, game, venue">
+          <select class="form-control" id="event-type">
+            <option>music</option>
+            <option>sports</option>
+            <option>theatre</option>
+            <option>art</option>
+          </select>
         </div>
        
         <div class="mb-3">
-          <label for="formGroup" class="form-label text-white">How many tickets?</label>
-          <input type="text" class="form-control" id="how-many" placeholder="potentially deleting this section ...">
+          <label for="formGroup" class="form-label text-white">Sort by:</label>
+          <select class="form-control" id="how-many">
+            <option>Relevence, desc.</option>
+            <option>Date, desc. </option>
+            <option>Name, Date, desc.</option>
+            <option>Random</option>
+          </select>
         </div>
        
         <div class="d-flex justify-content-center">
@@ -67,11 +77,13 @@
     </form>
 
 
-
     <!-- *****************PLACE HOLDER FOR TICKETMASTER CARDS*************** -->
-      <div class="card-deck d-flex" id="ticket-card-holder"></div>
-
     </main>
+    <section class="container-fluid mb-4">
+      <div class="card-deck row" id="ticket-card-holder"></div>
+    </section>
+
+
 
     <!-- todo footer here  -->
     <!-- MS Note - added footer and centered our team name -->
