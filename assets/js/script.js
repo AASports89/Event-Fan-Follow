@@ -90,8 +90,14 @@ function setLocalStorage(city) {
   localStorage.setItem("city", city);
 }
 
+function renderLocalStorage(){
+  var savedCities = localStorage.getItem("city");
+  console.log(savedCities);
+}
+
 $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
 
+renderLocalStorage();
 
 // *************************** Calling Functions ********************************//
 searchCityIDEl.on('click', getTicketMasterInfo);
