@@ -171,7 +171,7 @@ searchCityIDEl.on("click", getTicketMasterInfo);
 
 dueDateInputEl.datepicker({ minDate: 1 });
 
-$(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
+// $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
 
 pageTitleEl.on("click", pageReload);
 
