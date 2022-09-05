@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/ui-darkness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     
-    <!-- LINK MOST CURRENT VERSION OF FONTAWESOME FOR 'REMOTE CONTROLLER' ICON AS SAVE BUTTON -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
    
@@ -17,7 +16,6 @@
   </head>
 
   <body>
-   <div id="map"></div>
 
     <header">
       <!-- todo nav bar here  -->
@@ -32,12 +30,11 @@
 
       </nav>
     </header>
-   
-  
       <!-- todo *background* maybe -->
 
       <!-- todo div or section with form with button-->
       <main class="container row">
+        
       <form id="form" class="border rounded border-light p-4 col-6">
         <div class="events form">
           <div class="mb-3 ui-widget ">
@@ -80,28 +77,34 @@
         </div>
       </div>
     </form>
-
-
+  
+    <div style="border: solid 1.5px whitesmoke; border-radius: 0.25em; 
+    width: 50%; height: 450px; display: none" id="map">
+    </div>
     <!-- *****************PLACE HOLDER FOR TICKETMASTER CARDS*************** -->
     </main>
     <section class="container-fluid mb-4">
-      <div class="card-deck row" id="ticket-card-holder"></div>
+      <div class="card-deck row" id="ticket-card-holder">
+      
+      </div>
     </section>
-
-
-
     <!-- todo footer here  -->
     <!-- MS Note - added footer and centered our team name -->
-    <footer class="fixed-bottom d-flex justify-content-center text-white bg-primary">API Squad™</footer>
-
+    
+    <footer class="api" style="text-align: center; position: absolute;">API Squad™
+    <div style="margin-top: -50px"><img style="width: 60px; float: left" src="./assets/images/gm.jpg"></div>
+    <div> <img style="float: right; border-radius: 1em; width: 90px" src="./assets/images/tkm.jpg"></div>
+    </footer>
+ 
+   
     <!-- LINKS -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=initMap"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefcPxVMTAYFtpnbp3axEYEqtXbQWT1Ig&callback=initMap"></script>
     <script src="./assets/js/script.js"></script>
 
   </body>
