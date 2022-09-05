@@ -4,6 +4,7 @@ var cityTextEl = $("#where");
 var searchCityIDEl = $("#searchCityID");
 var eventTypeEl = $("#event-type");
 var eventSortEl = $("#how-sort");
+var pageTitleEl = $("#page-title");
 
 var ticketCardHolderEl = $("#ticket-card-holder");
 var userFormEl = document.querySelector("googleMap");
@@ -145,12 +146,20 @@ function renderLocalStorage() {
   }
 }
 
+// *************************** Reload Page ********************************//
+function pageReload() {
+  console.log("reload me");
+  location.reload();
+}
+
 // *************************** Calling Functions ********************************//
 searchCityIDEl.on("click", getTicketMasterInfo);
 
 dueDateInputEl.datepicker({ minDate: 1 });
 
 $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
+
+pageTitleEl.on("click", pageReload);
 
 renderLocalStorage();
 
