@@ -110,9 +110,6 @@ function storeLatLon(lat, lon) {
   var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
   // LatLng(37.426718, -122.080722);
   console.log(thisLatLng);
-
-  
-
 }
 
 // *************************** Local Storage ********************************//
