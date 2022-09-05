@@ -22,7 +22,7 @@ var getTicketMasterInfo = function (event) {
   var userClassificationName = eventTypeEl[0].value;
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort;
 
-  // setLocalStorage(userCity);
+  setLocalStorage(userCity);
 
   var apiUrl =
     "https://app.ticketmaster.com/discovery/v2/events/?apikey=Ghin8Ip1w9d05qXM8SbX3K9z1NWr1Y1A&source=ticketmaster&city=" +
@@ -130,20 +130,20 @@ function setLocalStorage(city) {
   renderLocalStorage();
 }
 
-// function renderLocalStorage() {
-//   var savedCities = JSON.parse(localStorage.getItem("city"));
+function renderLocalStorage() {
+  var savedCities = JSON.parse(localStorage.getItem("city"));
 
-//   if (savedCities === null) {
-//     console.log("nothing in local storage");
-//   } else {
-//     // ****** Auto complete from local storage ******//
-//     $(function () {
-//       $("#where").autocomplete({
-//         source: savedCities,
-//       });
-//     });
-//   }
-// }
+  if (savedCities === null) {
+    console.log("nothing in local storage");
+  } else {
+    // ****** Auto complete from local storage ******//
+    $(function () {
+      $("#where").autocomplete({
+        source: savedCities,
+      });
+    });
+  }
+}
 
 // *************************** Calling Functions ********************************//
 searchCityIDEl.on("click", getTicketMasterInfo);
@@ -152,7 +152,7 @@ dueDateInputEl.datepicker({ minDate: 1 });
 
 $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
 
-// renderLocalStorage();
+renderLocalStorage();
 
 //******************************** NEW-GOOGLE-MAPS-JSCRIPT *********************************//
 
