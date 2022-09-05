@@ -16,21 +16,7 @@ body {
   background-size: cover;
 }
 
-
-
-
-#map {
-  height: 200px;
-  margin-top: 70%;
-float: right;
-  width: 20%;
-  display: none;
-}
-
-
 /* MS note - added padding to push our logo out a bit */
-
-
 
 h1 {
   padding-left: 20px;
@@ -61,8 +47,10 @@ nav {
 }
 
 footer {
-  height: 60px;
+  height: 65px;
   width: 100%;
+  font-size: 115%;
+  color: whitesmoke;
   line-height: 60px;
   background-image: linear-gradient(
   rgb(4, 38, 205) 0%,
@@ -88,89 +76,87 @@ footer {
   text-align: right;
 }
 
-/************************* MOBILE DEVICE CONFIGURATIONS ************************/
+/******************************** MOBILE-DEVICE-CONFIGURATIONS ******************************/
 
-/* @media (max-width: 900px) {
+@media (max-width: 900px) {
 
-  .container {
-    flex-wrap: wrap;
+  body {
+    flex-direction: row;
   }
 
-  img {
-    width: 400px;
-    height: 100px;
+  header {
+    width: 100%;
   }
-
-  .row {
-   margin: 50px;
- }
-
-  .saveBtn {
-   padding-left: 50px;
-   padding-right: 50px;
-   width: 50px;
-   height: 50px;
- }
-
- .past, .present, .future {
-   height: 100px;
- }
+  
+  li {
+    padding-right: 10px;
+  }
 }
 
 @media (max-width: 760px) {
    
+  body {
+    flex-direction: row;
+  }
+
+  main {
+  flex-direction: row;
+  }
+  
+  nav {
+    width: 100%;
+  }
+
   .container {
-    flex-wrap: wrap;
+    padding-top: 25px;
   }
 
-   img {
-     width: 400px;
-     height: 100px;
-   }
-
-   .row {
-    margin: 50px;
+  #ticket-card-holder {
+    width: 100%;
   }
 
-   .saveBtn {
-    padding-left: 50px;
-    padding-right: 50px;
-    width: 50px;
-    height: 50px;
+  h1{
+    padding-left: 5px;
   }
 
-  .past, .present, .future {
-    height: 100px;
+  li {
+    padding-right: 10px;
   }
+
+  footer {
+    width: 100%;
+  }
+  
 }
 
 @media (max-width: 500px) {
    
-  .container {
-    flex-wrap: wrap;
+  body {
+    display: flex;
   }
 
-  img {
-    width: 400px;
-    height: 100px;
+  nav {
+    width: 100%;
   }
 
-  #clearFieldsBtn {
-   margin-bottom: 2.5px;
+  #ticket-card-holder {
+  width: 100%;
   }
 
-  .row {
-   margin: 50px;
- }
+  #map{
+    max-width: 50%;
+  }
 
-  .saveBtn {
-   padding-left: 50px;
-   padding-right: 50px;
-   width: 50px;
-   height: 50px;
- }
+  h1{
+  padding-left: 5px;
+  }
 
- .past, .present, .future {
-   height: 100px;
- }
-} */
+  li {
+    padding-right: 10px;
+  }
+  
+  footer {
+    width: 100%;
+  }
+
+}
