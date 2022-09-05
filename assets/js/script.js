@@ -97,9 +97,23 @@ var getTicketMasterInfo = function (event) {
         cardHolder.append(cardImg, cardBody);
         cardCol.append(cardHolder);
         ticketCardHolderEl.append(cardCol);
+
+        storeLatLon(lat, lon);
       });
     });
 };
+
+// *************************** Storing the lat / lon ********************************//
+function storeLatLon(lat, lon) {
+  // console.log(lat);
+  // console.log(lon);
+  var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
+  // LatLng(37.426718, -122.080722);
+  console.log(thisLatLng);
+
+  
+
+}
 
 // *************************** Local Storage ********************************//
 
