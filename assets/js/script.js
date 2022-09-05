@@ -45,12 +45,7 @@ var getTicketMasterInfo = function (event) {
       indexNumbers.forEach(function (indexNumber) {
         var eventName = data._embedded.events[indexNumber].name;
         var eventImageURL = data._embedded.events[indexNumber].images[1].url;
-        //   var eventPrice =
-        //     "$" +
-        // data._embedded.events[indexNumber].priceRanges[0].min +
-        // "0 - $" +
-        // data._embedded.events[indexNumber].priceRanges[0].max +
-        // "0";
+        var eventPrice = ` $${data._embedded.events[indexNumber].priceRanges[0].min}0 - $${data._embedded.events[indexNumber].priceRanges[0].max}0 `;
         var eventVenue =
           data._embedded.events[indexNumber]._embedded.venues[0].name;
         var eventDate = moment(
@@ -83,7 +78,7 @@ var getTicketMasterInfo = function (event) {
         var cardDateTime = $("<p>")
           .text(eventDate + " - " + eventTime)
           .addClass("card-text");
-        // var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
+        var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
         var cardButton = $("<a>")
           .addClass("btn btn-primary text-white")
           .attr("type", "button")
@@ -95,7 +90,7 @@ var getTicketMasterInfo = function (event) {
           cardName,
           cardVenue,
           cardDateTime,
-          // cardPrice,
+          cardPrice,
           cardButton
         );
         cardHolder.append(cardImg, cardBody);
