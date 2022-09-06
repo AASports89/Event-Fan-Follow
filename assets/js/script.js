@@ -27,6 +27,8 @@ var getTicketMasterInfo = function (event) {
   var userClassificationName = eventTypeEl[0].value;
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort;
 
+  latArray = [];
+  lonArray = [];
   setLocalStorage(userCity);
 
   var apiUrl =
@@ -110,29 +112,10 @@ var getTicketMasterInfo = function (event) {
         lonArray.push(lon);
 
       });
-      // storeLatLon();
       loadMap();
     });
 };
 
-// *************************** Storing the lat / lon ********************************//
-function storeLatLon() {
-  // console.log(lat);
-  // console.log(lon);
-  // var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
-  // LatLng(37.426718, -122.080722);
-
-  var newlatArray = latArray;
-  var newlonArray = lonArray;
-
-  newLatLon1 = newlatArray[0] + ", " + newlonArray[0];
-  newLatLon2 = newlatArray[1] + ", " + newlonArray[1];
-  newLatLon3 = newlatArray[2] + ", " + newlonArray[2];
-  newLatLon4 = newlatArray[3] + ", " + newlonArray[3];
-  newLatLon5 = newlatArray[4] + ", " + newlonArray[4];
-  newLatLon6 = newlatArray[5] + ", " + newlonArray[5];
-
-}
 
 // *************************** Local Storage ********************************//
 
@@ -205,17 +188,12 @@ const cardButton = document.querySelector(".btn");
 // cardButton.onclick = 
 function loadMap() {
   if (targetDiv.style.display !== "none") {
-    targetDiv.style.display = "none";
+    // targetDiv.style.display = "none";
   } else {
     targetDiv.style.display = "flex";
   }
 
   initMap();
-  // <div style="border: solid 1.5px whitesmoke; border-radius: 0.25em; width: 50%; height: 450px; display: none" id="map"></div>
-  
-  // var theMap = $("<div>").attr("style", "border: solid 1.5px whitesmoke; border-radius: 0.25em; width: 50%; height: 450px;").attr("id", "map");
-
-  // mapPlaceholderEl.append(theMap);
 
 };
 //******************************************* */
@@ -235,19 +213,25 @@ function initMap() {
   var newlatArray = latArray;
   var newlonArray = lonArray;
 
-  newLatLon1 = newlatArray[0] + ", " + newlonArray[0];
-  newLatLon2 = newlatArray[1] + ", " + newlonArray[1];
-  newLatLon3 = newlatArray[2] + ", " + newlonArray[2];
-  newLatLon4 = newlatArray[3] + ", " + newlonArray[3];
-  newLatLon5 = newlatArray[4] + ", " + newlonArray[4];
-  newLatLon6 = newlatArray[5] + ", " + newlonArray[5];
+  newLat1 = newlatArray[0];
+  newLat2 = newlatArray[1];
+  newLat3 = newlatArray[2];
+  newLat4 = newlatArray[3];
+  newLat5 = newlatArray[4];
+  newLat6 = newlatArray[5];
 
-  console.log(newLatLon1);
+  newLon1 = newlonArray[0];
+  newLon2 = newlonArray[1];
+  newLon3 = newlonArray[2];
+  newLon4 = newlonArray[3];
+  newLon5 = newlonArray[4];
+  newLon6 = newlonArray[5];
+
 
   var mapOptions = {
     //LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
-    center: new google.maps.LatLng(38.5, -98.0),
-    zoom: 4,
+    center: new google.maps.LatLng(newLat1, newLon1),
+    zoom: 10,
     mapTypeControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DEAFULT,
@@ -257,84 +241,84 @@ function initMap() {
 
   // #1
   var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon1),
+    position: new google.maps.LatLng(newLat1, newLon1),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow = new google.maps.InfoWindow({
     content: "Follow Your Event!",
-    position: new google.maps.LatLng(newLatLon1),
+    position: new google.maps.LatLng(newLat1, newLon1),
   });
 
   // #2
   var marker1 = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon2),
+    position: new google.maps.LatLng(newLat2, newLon2),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow1 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(newLatLon2),
+    position: new google.maps.LatLng(newLat2, newLon2),
     content: "Follow Your Event!",
   });
   
   // #3
   var marker2 = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon3),
+    position: new google.maps.LatLng(newLat3, newLon3),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow2 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(newLatLon3),
+    position: new google.maps.LatLng(newLat3, newLon3),
     content: "Follow Your Event!",
   });
 
   // #4
   var marker3 = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon4),
+    position: new google.maps.LatLng(newLat4, newLon4),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow3 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(newLatLon4),
+    position: new google.maps.LatLng(newLat4, newLon4),
     content: "Follow Your Event!",
   });
 
   // #5
   var marker4 = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon5),
+    position: new google.maps.LatLng(newLat5, newLon5),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow4 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(newLatLon5),
+    position: new google.maps.LatLng(newLat5, newLon5),
     content: "Follow Your Event!",
   });
 
   // #6
   var marker5 = new google.maps.Marker({
-    position: new google.maps.LatLng(newLatLon6),
+    position: new google.maps.LatLng(newLat6, newLon6),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow5 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(newLatLon6),
+    position: new google.maps.LatLng(newLat6, newLon6),
     content: "Follow Your Event!",
   });
 
 
   var myTrip = [
-    new google.maps.LatLng(newLatLon1),
-    new google.maps.LatLng(newLatLon2),
-    new google.maps.LatLng(newLatLon3),
-    new google.maps.LatLng(newLatLon4),
-    new google.maps.LatLng(newLatLon5),
-    new google.maps.LatLng(newLatLon6),
+    new google.maps.LatLng(newLat1, newLon1),
+    new google.maps.LatLng(newLat2, newLon2),
+    new google.maps.LatLng(newLat3, newLon3),
+    new google.maps.LatLng(newLat4, newLon4),
+    new google.maps.LatLng(newLat5, newLon5),
+    new google.maps.LatLng(newLat6, newLon6),
   ];
   var flightPath = new google.maps.Polyline({
     path: myTrip,
