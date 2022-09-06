@@ -11,6 +11,9 @@ var userFormEl = document.querySelector("googleMap");
 
 var citiesArray = [];
 
+var latArray = [];
+var lonArray = [];
+
 //****************** Functions / Methods ******************//
 
 //************************* Ticketmaster API ***************************//
@@ -100,18 +103,32 @@ var getTicketMasterInfo = function (event) {
         cardCol.append(cardHolder);
         ticketCardHolderEl.append(cardCol);
 
-        storeLatLon(lat, lon);
+        
+
+        latArray.push(lat);
+        lonArray.push(lon);
+
+        // storeLatLon(lat, lon);
       });
+      storeLatLon();
     });
 };
 
 // *************************** Storing the lat / lon ********************************//
-function storeLatLon(lat, lon) {
+function storeLatLon() {
   // console.log(lat);
   // console.log(lon);
-  var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
+  // var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
   // LatLng(37.426718, -122.080722);
-  console.log(thisLatLng);
+
+  var newlatArray = latArray;
+  var newlonArray = lonArray;
+
+  console.log(newlatArray);
+  console.log(newlonArray);
+
+  // console.log(newlatArray[2]);
+
 }
 
 // *************************** Local Storage ********************************//
