@@ -39,7 +39,7 @@ The four of us worked REALLY well together! Brainstorming was fun and we came up
 - Build in sections for advertising/sponsorship partners.
 
 ## Demo
-
+![event-fan-follow-gif](event-fan-follow.gif)
 ## Links
 Deployed URL  - include link
-GitHub Repo - include link
+GitHub Repo - https://github.com/AASports89/Event-Fan-Follow

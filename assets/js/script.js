@@ -5,11 +5,15 @@ var searchCityIDEl = $("#searchCityID");
 var eventTypeEl = $("#event-type");
 var eventSortEl = $("#how-sort");
 var pageTitleEl = $("#page-title");
+var mapPlaceholderEl = $("#map-placeholder");
 
 var ticketCardHolderEl = $("#ticket-card-holder");
 var userFormEl = document.querySelector("googleMap");
 
 var citiesArray = [];
+
+var latArray = [];
+var lonArray = [];
 
 //****************** Functions / Methods ******************//
 
@@ -23,6 +27,8 @@ var getTicketMasterInfo = function (event) {
   var userClassificationName = eventTypeEl[0].value;
   var userSort = eventSortEl[0].selectedOptions[0].dataset.sort;
 
+  latArray = [];
+  lonArray = [];
   setLocalStorage(userCity);
 
   var apiUrl =
@@ -100,19 +106,16 @@ var getTicketMasterInfo = function (event) {
         cardCol.append(cardHolder);
         ticketCardHolderEl.append(cardCol);
 
-        storeLatLon(lat, lon);
+        
+
+        latArray.push(lat);
+        lonArray.push(lon);
+
       });
+      loadMap();
     });
 };
 
-// *************************** Storing the lat / lon ********************************//
-function storeLatLon(lat, lon) {
-  // console.log(lat);
-  // console.log(lon);
-  var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
-  // LatLng(37.426718, -122.080722);
-  console.log(thisLatLng);
-}
 
 // *************************** Local Storage ********************************//
 
@@ -179,15 +182,21 @@ renderLocalStorage();
 //******************************** NEW-GOOGLE-MAPS-JSCRIPT *********************************//
 
 //DISPLAY-MAP-DIV-LISTENER//
+//********************************************* */
 const targetDiv = document.querySelector("#map");
 const cardButton = document.querySelector(".btn");
-cardButton.onclick = function () {
+// cardButton.onclick = 
+function loadMap() {
   if (targetDiv.style.display !== "none") {
-    targetDiv.style.display = "none";
+    // targetDiv.style.display = "none";
   } else {
     targetDiv.style.display = "flex";
   }
+
+  initMap();
+
 };
+//******************************************* */
 
 //EVENT-LISTENER-CLICK-ON-MARKER-EXPOSE-INFOWINDOW-//
 // map.addListener("click", (mapsMouseEvent) => {
@@ -201,10 +210,28 @@ cardButton.onclick = function () {
 
 //INITIALIZE-CODE-&-CONFIGURE-VARIABLES-MAP-OPTIONS//
 function initMap() {
+  var newlatArray = latArray;
+  var newlonArray = lonArray;
+
+  newLat1 = newlatArray[0];
+  newLat2 = newlatArray[1];
+  newLat3 = newlatArray[2];
+  newLat4 = newlatArray[3];
+  newLat5 = newlatArray[4];
+  newLat6 = newlatArray[5];
+
+  newLon1 = newlonArray[0];
+  newLon2 = newlonArray[1];
+  newLon3 = newlonArray[2];
+  newLon4 = newlonArray[3];
+  newLon5 = newlonArray[4];
+  newLon6 = newlonArray[5];
+
+
   var mapOptions = {
     //LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
-    center: new google.maps.LatLng(38.5, -98.0),
-    zoom: 4,
+    center: new google.maps.LatLng(newLat1, newLon1),
+    zoom: 10,
     mapTypeControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DEAFULT,
@@ -212,84 +239,86 @@ function initMap() {
     },
   };
 
+  // #1
   var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(37.426718, -122.080722),
+    position: new google.maps.LatLng(newLat1, newLon1),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow = new google.maps.InfoWindow({
     content: "Follow Your Event!",
-    position: new google.maps.LatLng(37.426718, -122.080722),
+    position: new google.maps.LatLng(newLat1, newLon1),
   });
 
+  // #2
   var marker1 = new google.maps.Marker({
-    position: new google.maps.LatLng(36.0909, -115.1833),
+    position: new google.maps.LatLng(newLat2, newLon2),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
-  });
-
-  var marker2 = new google.maps.Marker({
-    position: new google.maps.LatLng(39.805674, -104.891082),
-    icon: "./assets/images/tm.jpg",
-    animation: google.maps.Animation.DROP,
-  });
-
-  var marker3 = new google.maps.Marker({
-    position: new google.maps.LatLng(34.012879, -118.284926),
-    icon: "./assets/images/tm.jpg",
-    animation: google.maps.Animation.DROP,
-  });
-
-  var marker4 = new google.maps.Marker({
-    position: new google.maps.LatLng(32.77507215, -96.75646586),
-    icon: "./assets/images/tm.jpg",
-    animation: google.maps.Animation.DROP,
-  });
-
-  var marker5 = new google.maps.Marker({
-    position: new google.maps.LatLng(30.16190839, -95.46435087),
-    icon: "./assets/images/tm.jpg",
-    animation: google.maps.Animation.DROP,
-  });
-
-  var infowindow = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(37.426718, -122.080722),
-    content: "Follow Your Event!",
   });
 
   var infowindow1 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(36.0909, -115.1833),
+    position: new google.maps.LatLng(newLat2, newLon2),
     content: "Follow Your Event!",
+  });
+  
+  // #3
+  var marker2 = new google.maps.Marker({
+    position: new google.maps.LatLng(newLat3, newLon3),
+    icon: "./assets/images/tm.jpg",
+    animation: google.maps.Animation.DROP,
   });
 
   var infowindow2 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(39.805674, -104.891082),
+    position: new google.maps.LatLng(newLat3, newLon3),
     content: "Follow Your Event!",
+  });
+
+  // #4
+  var marker3 = new google.maps.Marker({
+    position: new google.maps.LatLng(newLat4, newLon4),
+    icon: "./assets/images/tm.jpg",
+    animation: google.maps.Animation.DROP,
   });
 
   var infowindow3 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(34.012879, -118.284926),
+    position: new google.maps.LatLng(newLat4, newLon4),
     content: "Follow Your Event!",
+  });
+
+  // #5
+  var marker4 = new google.maps.Marker({
+    position: new google.maps.LatLng(newLat5, newLon5),
+    icon: "./assets/images/tm.jpg",
+    animation: google.maps.Animation.DROP,
   });
 
   var infowindow4 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(32.77507215, -96.75646586),
+    position: new google.maps.LatLng(newLat5, newLon5),
     content: "Follow Your Event!",
+  });
+
+  // #6
+  var marker5 = new google.maps.Marker({
+    position: new google.maps.LatLng(newLat6, newLon6),
+    icon: "./assets/images/tm.jpg",
+    animation: google.maps.Animation.DROP,
   });
 
   var infowindow5 = new google.maps.InfoWindow({
-    position: new google.maps.LatLng(30.16190839, -95.46435087),
+    position: new google.maps.LatLng(newLat6, newLon6),
     content: "Follow Your Event!",
   });
 
+
   var myTrip = [
-    new google.maps.LatLng(36.0909, -115.1833),
-    new google.maps.LatLng(39.805674, -104.891082),
-    new google.maps.LatLng(37.426718, -122.080722),
-    new google.maps.LatLng(34.012879, -118.284926),
-    new google.maps.LatLng(32.77507215, -96.75646586),
-    new google.maps.LatLng(30.16190839, -95.46435087),
+    new google.maps.LatLng(newLat1, newLon1),
+    new google.maps.LatLng(newLat2, newLon2),
+    new google.maps.LatLng(newLat3, newLon3),
+    new google.maps.LatLng(newLat4, newLon4),
+    new google.maps.LatLng(newLat5, newLon5),
+    new google.maps.LatLng(newLat6, newLon6),
   ];
   var flightPath = new google.maps.Polyline({
     path: myTrip,
