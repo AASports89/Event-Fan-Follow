@@ -39,7 +39,34 @@ The four of us worked REALLY well together! Brainstorming was fun and we came up
 - Build in sections for advertising/sponsorship partners.
 
 ## Demo
-![event-fan-follow-gif](event-fan-follow.gif)
-## Links
-Deployed URL  - include link
-GitHub Repo - https://github.com/AASports89/Event-Fan-Follow
+
+**Note:** The following GIF and images will demonstrate the application's look and functionality:
+
+![The following GIF highlights the functionality and overall look of the application.](./assets/images/event-fan-follow.gif)
+
+
+### Main Screen:
+
+![The following image highlights the main screen of the application.](./assets/images/mapg.jpg)
+
+
+### Google Maps:
+
+![The following image highlights the Google Maps feature of the application.](./assets/images/pgm.jpg)
+
+
+### Mobile Device Compatibility:
+
+![The following image depicts the mobile device compatibility of the application.](./assets/images/pgmb.jpg)
+
+
+### Ticket Cards:
+
+![The following image depicts how the search results are displayed witin the application.](./assets/images/pgtk.jpg)
+
+
+### Deployed Webpage URL:
+https://aasports89.github.io/Event-Fan-Follow/
+
+### Deployed Webpage URL:
+https://github.com/AASports89/Event-Fan-Follow

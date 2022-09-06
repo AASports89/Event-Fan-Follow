@@ -185,10 +185,10 @@ renderLocalStorage();
 //********************************************* */
 const targetDiv = document.querySelector("#map");
 const cardButton = document.querySelector(".btn");
-// cardButton.onclick = 
+cardButton.onclick = 
 function loadMap() {
   if (targetDiv.style.display !== "none") {
-    // targetDiv.style.display = "none";
+    targetDiv.style.display = "none";
   } else {
     targetDiv.style.display = "flex";
   }
@@ -197,16 +197,6 @@ function loadMap() {
 
 };
 //******************************************* */
-
-//EVENT-LISTENER-CLICK-ON-MARKER-EXPOSE-INFOWINDOW-//
-// map.addListener("click", (mapsMouseEvent) => {
-//   // Close the current InfoWindow.
-//   infowindow.close();
-//   infowindow.setContent(
-//   JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-//   );
-//   infowindow.open(map, marker);
-//   });
 
 //INITIALIZE-CODE-&-CONFIGURE-VARIABLES-MAP-OPTIONS//
 function initMap() {
@@ -231,6 +221,7 @@ function initMap() {
   var mapOptions = {
     //LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
     center: new google.maps.LatLng(newLat1, newLon1),
+    // center: new google.maps.LatLng(36.0909, -115.1833),
     zoom: 10,
     mapTypeControl: true,
     mapTypeControlOptions: {
@@ -242,13 +233,15 @@ function initMap() {
   // #1
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(newLat1, newLon1),
+    // position: new google.maps.LatLng(36.0909, -115.1833),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow = new google.maps.InfoWindow({
     content: "Follow Your Event!",
-    position: new google.maps.LatLng(newLat1, newLon1),
+    // position: new google.maps.LatLng(newLat1, newLon1),
+    position: new google.maps.LatLng(36.0909, -115.1833),
   });
 
   // #2
@@ -358,7 +351,7 @@ function initMap() {
     infowindow5.open(map, marker5);
   });
 
-  //DISPLAY-'TM'-MARKER//
+//DISPLAY-'TM'-MARKER//
   marker.setMap(map);
   marker1.setMap(map);
   marker2.setMap(map);
@@ -366,14 +359,14 @@ function initMap() {
   marker4.setMap(map);
   marker5.setMap(map);
 
-  //DISPLAY-PATH-OF-EVENTS//
+//DISPLAY-PATH-OF-EVENTS//
   flightPath.setMap(map);
 }
 
-//*** GOOGLE-ERROR-BUG-FIX ***//
-//     $(document).ready(function(){
-//     initMap
-//     })
+//GOOGLE ERROR BUG FIX//
+// $(document).ready(function(){
+//   initMap
+//   })
 
 //**************************** TICKETMASTER CARD - LATs & LONs *******************************//
 //  new google.maps.LatLng(36.0909, -115.1833),
