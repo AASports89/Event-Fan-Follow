@@ -40,6 +40,56 @@ The four of us worked REALLY well together! Brainstorming was fun and we came up
 
 ## Demo
 
-## Links
-Deployed URL  - include link
-GitHub Repo - include link
+**Note:** The following GIF and images will demonstrate the application's look and functionality:
+
+![The following GIF highlights the functionality and overall look of the application.](./assets/images/eff.gif)
+
+
+### Main Screen:
+
+![The following image highlights the main screen of the application.](./assets/images/hmpg.jpg)
+
+
+### Main Features:
+
+![The following image highlights the storage area of the work activity descriptions and the corresponding hour.](./assets/images/pg1.jpg)
+
+
+### More Features:
+
+![The following image demonstrates some more additional features.](./assets/images/pg2.jpg)
+
+
+### More Features:
+
+![The following image depicts additional features users can take advantage of.](./assets/images/pg3.jpg)
+
+
+### Event Tickets:
+
+![The following image depicts the layout of the event tickets & their information layout.](./assets/images/pg4.jpg)
+
+
+### Event Tickets II:
+
+![The following image depicts the layout of the event tickets & their information layout.](./assets/images/pg5.jpg)
+
+
+### Mobile Device Capabilities:
+
+![The following image depicts the layout of the event tickets & their information layout.](./assets/images/pg6.jpg)
+
+
+### Mobile Device Capabilities:
+
+![The following image depicts the layout of the event tickets & their information layout.](./assets/images/pg7.jpg)
+
+
+### Deployed Webpage URL:
+
+https://aasports89.github.io/Event-Fan-Follow/
+
+
+### GitHUB Repository URL:
+
+https://github.com/AASports89/Event-Fan-Follow
