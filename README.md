@@ -68,5 +68,5 @@ The four of us worked REALLY well together! Brainstorming was fun and we came up
 ### Deployed Webpage URL:
 https://aasports89.github.io/Event-Fan-Follow/
 
-### Deployed Webpage URL:
+### GitHUB Repository URL:
 https://github.com/AASports89/Event-Fan-Follow
