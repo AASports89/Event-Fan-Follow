@@ -30,7 +30,6 @@ The four of us worked REALLY well together! Brainstorming was fun and we came up
 ## Directions for Future Development
 - create a ‘Load More’ feature and a scroll to view all events. 
 - Create additional HTML pages for nav bar links - ex: contact us.  
-- Links to purchase tickets.
 - Options to print directions.
 - Options to link and open the Google Maps app.
 - Connect to Spotify to allow users to check out the artists prior to committing to event.
