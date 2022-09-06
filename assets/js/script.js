@@ -1,4 +1,4 @@
-//****************** Reference Variables *********************//
+//********************************* REFERENCE-VARIABLES ***********************************//
 var dueDateInputEl = $("#when");
 var cityTextEl = $("#where");
 var searchCityIDEl = $("#searchCityID");
@@ -11,10 +11,10 @@ var userFormEl = document.querySelector("googleMap");
 
 var citiesArray = [];
 
-//****************** Functions / Methods ******************//
+//*********************************** FUNCTIONS-&-METHODS ********************************//
 
-//************************* Ticketmaster API ***************************//
-var getTicketMasterInfo = function (event) {
+//************************* TICKETMASTER-API ***************************//
+  var getTicketMasterInfo = function (event) {
   var userCity = cityTextEl[0].value;
   var userDate =
     moment(dueDateInputEl[0].value, "MM/DD/YYYY").format(
@@ -80,7 +80,7 @@ var getTicketMasterInfo = function (event) {
           .text(eventDate + " - " + eventTime)
           .addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
-        //button will link to ticketMaster to purchase tickets
+//BUTTON WILL LINK TO TICKETMASTER TO PURCHASE TICKET//
         var cardButton = $("<a>")
           .addClass("btn btn-primary text-white")
           .attr("type", "button")
@@ -105,18 +105,17 @@ var getTicketMasterInfo = function (event) {
     });
 };
 
-// *************************** Storing the lat / lon ********************************//
-function storeLatLon(lat, lon) {
+//**************************** STORING-LAT-&-LON-CONSOLE-LOG ***************************//
+  function storeLatLon(lat, lon) {
   // console.log(lat);
   // console.log(lon);
   var thisLatLng = "LatLng(" + lat + ", " + lon + ")";
   // LatLng(37.426718, -122.080722);
   console.log(thisLatLng);
-}
+  }
 
-// *************************** Local Storage ********************************//
-
-function setLocalStorage(city) {
+//*************************************** LOCAL-STORAGE ***********************************//
+  function setLocalStorage(city) {
   cityTextEl.val("");
 
   // error control
@@ -124,22 +123,22 @@ function setLocalStorage(city) {
     return;
   }
 
-  // if city (the key value) does not exist, make an empty slot in local storage
+//IF CITY (KEY VALUE) DOES NOT EXIST, MAKE AN EMPTY MAKE SLOT IN THE LOCAL STORAGE//
   if (!localStorage.getItem("city")) {
     localStorage.setItem("city", "[]");
   } else {
-    // parse from the local storage
+//PARSE FROM THE LOCAL STORAGE//
     citiesArray = JSON.parse(localStorage.getItem("city"));
   }
 
-  // if city doesn't already exist in local storage, add it
+//IF CITY DOES NOT ALREADY EXIST IN LOCAL STORAGE, ADD IT//
   if (!citiesArray.includes(city)) {
     citiesArray.push(city);
   } else {
     console.log("its a repeat");
   }
 
-  // set to local storage (stringify it)
+//SET TO LOCAL STORAGE (STRINGIFY IT)//
   localStorage.setItem("city", JSON.stringify(citiesArray));
   renderLocalStorage();
 }
@@ -150,7 +149,8 @@ function renderLocalStorage() {
   if (savedCities === null) {
     console.log("nothing in local storage");
   } else {
-    // ****** Auto complete from local storage ******//
+    
+//******* AUTO COMPLETE FROM THE LOCAL STORAGE ******//
     $(function () {
       $("#where").autocomplete({
         source: savedCities,
@@ -159,18 +159,18 @@ function renderLocalStorage() {
   }
 }
 
-// *************************** Reload Page ********************************//
+//**************************** RELOAD-PAGE ********************************//
 function pageReload() {
   console.log("reload me");
   location.reload();
 }
 
-// *************************** Calling Functions ********************************//
+//**************************** CALLING-FUNCTIONS ********************************//
 searchCityIDEl.on("click", getTicketMasterInfo);
 
 dueDateInputEl.datepicker({ minDate: 1 });
 
-// $(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);
+//$(ticketCardHolderEl).on("click", ".btn", getTicketMasterInfo);//
 
 pageTitleEl.on("click", pageReload);
 
@@ -189,20 +189,11 @@ cardButton.onclick = function () {
   }
 };
 
-//EVENT-LISTENER-CLICK-ON-MARKER-EXPOSE-INFOWINDOW-//
-// map.addListener("click", (mapsMouseEvent) => {
-//   // Close the current InfoWindow.
-//   infowindow.close();
-//   infowindow.setContent(
-//   JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-//   );
-//   infowindow.open(map, marker);
-//   });
-
 //INITIALIZE-CODE-&-CONFIGURE-VARIABLES-MAP-OPTIONS//
 function initMap() {
   var mapOptions = {
-    //LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
+
+//LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
     center: new google.maps.LatLng(38.5, -98.0),
     zoom: 4,
     mapTypeControl: true,
@@ -301,7 +292,7 @@ function initMap() {
     editable: true,
   });
 
-  //CREATE-&-DISPLAY-GOOGLE-MAP-USING-ALL-ABOVE-MAP-OPTIONS-&-VARIABLES//
+//CREATE-&-DISPLAY-GOOGLE-MAP-USING-ALL-ABOVE-MAP-OPTIONS-&-VARIABLES//
   var map = new google.maps.Map(
     document.querySelector("#map"),
     mapOptions,
@@ -329,7 +320,7 @@ function initMap() {
     infowindow5.open(map, marker5);
   });
 
-  //DISPLAY-'TM'-MARKER//
+//DISPLAY-'TM'-MARKER//
   marker.setMap(map);
   marker1.setMap(map);
   marker2.setMap(map);
@@ -337,19 +328,15 @@ function initMap() {
   marker4.setMap(map);
   marker5.setMap(map);
 
-  //DISPLAY-PATH-OF-EVENTS//
+//DISPLAY-PATH-OF-EVENTS//
   flightPath.setMap(map);
 }
-
-//*** GOOGLE-ERROR-BUG-FIX ***//
-//     $(document).ready(function(){
-//     initMap
-//     })
+//***************************************** END-OF-CODE *************************************//
 
 //**************************** TICKETMASTER CARD - LATs & LONs *******************************//
-//  new google.maps.LatLng(36.0909, -115.1833),
-//  new google.maps.LatLng(39.805674, -104.891082),
-//  new google.maps.LatLng(37.426718, -122.080722),
-//  new google.maps.LatLng(34.012879, -118.284926),
-//  new google.maps.LatLng(32.77507215, -96.75646586),
-//  new google.maps.LatLng(30.16190839, -95.46435087)
+  //  new google.maps.LatLng(36.0909, -115.1833),
+  //  new google.maps.LatLng(39.805674, -104.891082),
+  //  new google.maps.LatLng(37.426718, -122.080722),
+  //  new google.maps.LatLng(34.012879, -118.284926),
+  //  new google.maps.LatLng(32.77507215, -96.75646586),
+  //  new google.maps.LatLng(30.16190839, -95.46435087)
