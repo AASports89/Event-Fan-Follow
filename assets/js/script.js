@@ -1,4 +1,4 @@
-//****************** Reference Variables *********************//
+//************************ Reference-Variables ************************//
 var dueDateInputEl = $("#when");
 var cityTextEl = $("#where");
 var searchCityIDEl = $("#searchCityID");
@@ -15,9 +15,9 @@ var citiesArray = [];
 var latArray = [];
 var lonArray = [];
 
-//****************** Functions / Methods ******************//
+//********************** Functions-&-Methods *************************//
 
-//************************* Ticketmaster API ***************************//
+//************ Ticketmaster-API ************//
 var getTicketMasterInfo = function (event) {
   var userCity = cityTextEl[0].value;
   var userDate =
@@ -52,7 +52,7 @@ var getTicketMasterInfo = function (event) {
       indexNumbers.forEach(function (indexNumber) {
         var eventName = data._embedded.events[indexNumber].name;
         var eventImageURL = data._embedded.events[indexNumber].images[1].url;
-        var eventPrice = ` $${data._embedded.events[indexNumber].priceRanges[0].min} - $${data._embedded.events[indexNumber].priceRanges[0].max} `;
+        // var eventPrice = ` $${data._embedded.events[indexNumber].priceRanges[0].min} - $${data._embedded.events[indexNumber].priceRanges[0].max} `;
         var eventVenue =
           data._embedded.events[indexNumber]._embedded.venues[0].name;
         var eventDate = moment(
@@ -85,8 +85,8 @@ var getTicketMasterInfo = function (event) {
         var cardDateTime = $("<p>")
           .text(eventDate + " - " + eventTime)
           .addClass("card-text");
-        var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
-        //button will link to ticketMaster to purchase tickets
+        // var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
+//button will link to ticketMaster to purchase tickets
         var cardButton = $("<a>")
           .addClass("btn btn-primary text-white")
           .attr("type", "button")
@@ -99,7 +99,7 @@ var getTicketMasterInfo = function (event) {
           cardName,
           cardVenue,
           cardDateTime,
-          cardPrice,
+          // cardPrice,
           cardButton
         );
         cardHolder.append(cardImg, cardBody);
@@ -112,37 +112,40 @@ var getTicketMasterInfo = function (event) {
         lonArray.push(lon);
 
       });
+      
+    })
+    .then(function(){
       loadMap();
-    });
+    })
 };
 
 
-// *************************** Local Storage ********************************//
+//*************************** Local-Storage ***************************//
 
 function setLocalStorage(city) {
   cityTextEl.val("");
 
-  // error control
+//error control
   if (city === "") {
     return;
   }
 
-  // if city (the key value) does not exist, make an empty slot in local storage
+//if city (the key value) does not exist, make an empty slot in local storage
   if (!localStorage.getItem("city")) {
     localStorage.setItem("city", "[]");
   } else {
-    // parse from the local storage
+//parse from the local storage
     citiesArray = JSON.parse(localStorage.getItem("city"));
   }
 
-  // if city doesn't already exist in local storage, add it
+//if city doesn't already exist in local storage, add it
   if (!citiesArray.includes(city)) {
     citiesArray.push(city);
   } else {
     console.log("its a repeat");
   }
 
-  // set to local storage (stringify it)
+//set to local storage (stringify it)
   localStorage.setItem("city", JSON.stringify(citiesArray));
   renderLocalStorage();
 }
@@ -153,7 +156,7 @@ function renderLocalStorage() {
   if (savedCities === null) {
     console.log("nothing in local storage");
   } else {
-    // ****** Auto complete from local storage ******//
+//****** Auto complete from local storage ******//
     $(function () {
       $("#where").autocomplete({
         source: savedCities,
@@ -162,13 +165,13 @@ function renderLocalStorage() {
   }
 }
 
-// *************************** Reload Page ********************************//
+//*************************** Reload-Page ********************************//
 function pageReload() {
   console.log("reload me");
   location.reload();
 }
 
-// *************************** Calling Functions ********************************//
+//*************************** Calling-Functions ********************************//
 searchCityIDEl.on("click", getTicketMasterInfo);
 
 dueDateInputEl.datepicker({ minDate: 1 });
@@ -181,14 +184,13 @@ renderLocalStorage();
 
 //******************************** NEW-GOOGLE-MAPS-JSCRIPT *********************************//
 
-//DISPLAY-MAP-DIV-LISTENER//
-//********************************************* */
+//**************** DISPLAY-MAP-DIV-LISTENER ******************//
 const targetDiv = document.querySelector("#map");
 const cardButton = document.querySelector(".btn");
-cardButton.onclick = 
+// cardButton.onclick = 
 function loadMap() {
   if (targetDiv.style.display !== "none") {
-    targetDiv.style.display = "none";
+    // targetDiv.style.display = "none";
   } else {
     targetDiv.style.display = "flex";
   }
@@ -196,9 +198,7 @@ function loadMap() {
   initMap();
 
 };
-//******************************************* */
-
-//INITIALIZE-CODE-&-CONFIGURE-VARIABLES-MAP-OPTIONS//
+//******* INITIALIZE-CODE-&-CONFIGURE-VARIABLES-MAP-OPTIONS *******//
 function initMap() {
   var newlatArray = latArray;
   var newlonArray = lonArray;
@@ -217,11 +217,11 @@ function initMap() {
   newLon5 = newlonArray[4];
   newLon6 = newlonArray[5];
 
-
+if (newLat1) {
+  
   var mapOptions = {
-    //LAT-&-LON-CENTER-GOOGLE-MAP-KANSAS//
+//LAT-&-LON-CENTER-GOOGLE-MAP-NEW-EVENT-SEARCH//
     center: new google.maps.LatLng(newLat1, newLon1),
-    // center: new google.maps.LatLng(36.0909, -115.1833),
     zoom: 10,
     mapTypeControl: true,
     mapTypeControlOptions: {
@@ -230,21 +230,19 @@ function initMap() {
     },
   };
 
-  // #1
+// #1
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(newLat1, newLon1),
-    // position: new google.maps.LatLng(36.0909, -115.1833),
     icon: "./assets/images/tm.jpg",
     animation: google.maps.Animation.DROP,
   });
 
   var infowindow = new google.maps.InfoWindow({
     content: "Follow Your Event!",
-    // position: new google.maps.LatLng(newLat1, newLon1),
-    position: new google.maps.LatLng(36.0909, -115.1833),
+    position: new google.maps.LatLng(newLat1, newLon1),
   });
 
-  // #2
+// #2
   var marker1 = new google.maps.Marker({
     position: new google.maps.LatLng(newLat2, newLon2),
     icon: "./assets/images/tm.jpg",
@@ -256,7 +254,7 @@ function initMap() {
     content: "Follow Your Event!",
   });
   
-  // #3
+// #3
   var marker2 = new google.maps.Marker({
     position: new google.maps.LatLng(newLat3, newLon3),
     icon: "./assets/images/tm.jpg",
@@ -268,7 +266,7 @@ function initMap() {
     content: "Follow Your Event!",
   });
 
-  // #4
+// #4
   var marker3 = new google.maps.Marker({
     position: new google.maps.LatLng(newLat4, newLon4),
     icon: "./assets/images/tm.jpg",
@@ -280,7 +278,7 @@ function initMap() {
     content: "Follow Your Event!",
   });
 
-  // #5
+// #5
   var marker4 = new google.maps.Marker({
     position: new google.maps.LatLng(newLat5, newLon5),
     icon: "./assets/images/tm.jpg",
@@ -292,7 +290,7 @@ function initMap() {
     content: "Follow Your Event!",
   });
 
-  // #6
+// #6
   var marker5 = new google.maps.Marker({
     position: new google.maps.LatLng(newLat6, newLon6),
     icon: "./assets/images/tm.jpg",
@@ -303,7 +301,6 @@ function initMap() {
     position: new google.maps.LatLng(newLat6, newLon6),
     content: "Follow Your Event!",
   });
-
 
   var myTrip = [
     new google.maps.LatLng(newLat1, newLon1),
@@ -323,7 +320,7 @@ function initMap() {
     editable: true,
   });
 
-  //CREATE-&-DISPLAY-GOOGLE-MAP-USING-ALL-ABOVE-MAP-OPTIONS-&-VARIABLES//
+//CREATE-&-DISPLAY-GOOGLE-MAP-USING-ALL-ABOVE-MAP-OPTIONS-&-VARIABLES//
   var map = new google.maps.Map(
     document.querySelector("#map"),
     mapOptions,
@@ -362,7 +359,7 @@ function initMap() {
 //DISPLAY-PATH-OF-EVENTS//
   flightPath.setMap(map);
 }
-
+}
 //GOOGLE ERROR BUG FIX//
 // $(document).ready(function(){
 //   initMap
