@@ -63,7 +63,7 @@ var getTicketMasterInfo = function (event) {
         var lon =
           data._embedded.events[indexNumber]._embedded.venues[0].location
             .longitude;
-
+        var eventURL = data._embedded.events[indexNumber].url;
         var cardCol = $("<div>").addClass(
           "col-sm-12 col-md-6 col-lg-3 col-xl-2 mb-4"
         );
@@ -80,12 +80,14 @@ var getTicketMasterInfo = function (event) {
           .text(eventDate + " - " + eventTime)
           .addClass("card-text");
         var cardPrice = $("<p>").text(eventPrice).addClass("card-text");
+        //button will link to ticketMaster to purchase tickets
         var cardButton = $("<a>")
           .addClass("btn btn-primary text-white")
           .attr("type", "button")
           .attr("data-lat", lat)
           .attr("data-lon", lon)
-          .text("Follow Event");
+          .attr("href", eventURL) 
+          .text("Buy Tickets");
 
         cardBody.append(
           cardName,
